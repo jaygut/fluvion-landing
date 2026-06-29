@@ -1,0 +1,91 @@
+{
+  "corridors": [
+    {
+      "name": "Amazonas \u2192 La Plata",
+      "source_lat": -6.0,
+      "source_lon": -67.0,
+      "sink_lat": -22.0,
+      "sink_lon": -54.0,
+      "source_label": "Amazonas source parcels",
+      "sink_label": "Brazil / Argentina soy belt",
+      "crop": "soy",
+      "stakeholder": "ag-commodity investors",
+      "citation": "Zemp et al. 2014 (validated)",
+      "perha_low": 167,
+      "perha_central": 350,
+      "perha_high": 532,
+      "validated": true
+    },
+    {
+      "name": "Congo Basin \u2192 West African cocoa",
+      "source_lat": 2.0,
+      "source_lon": 21.0,
+      "sink_lat": 6.0,
+      "sink_lon": -2.0,
+      "source_label": "Congo Basin rainforest",
+      "sink_label": "Cote d'Ivoire + Ghana cocoa belt (~60% of world cocoa, ICCO)",
+      "crop": "cocoa",
+      "stakeholder": "soft-commodity funds, consumer-goods chains",
+      "citation": "Agric & Forest Met 2024; Smith et al. 2023 Nature",
+      "perha_central": null,
+      "validated": false
+    },
+    {
+      "name": "Congo / Ethiopian Highlands \u2192 Nile",
+      "source_lat": 11.0,
+      "source_lon": 38.0,
+      "sink_lat": 27.0,
+      "sink_lon": 31.0,
+      "source_label": "Congo flank + Ethiopian Highlands",
+      "sink_label": "Nile water + hydropower (Egypt, Sudan; ~150M people, UN)",
+      "crop": "water + hydropower",
+      "stakeholder": "governments, multilateral water finance",
+      "citation": "Gebrehiwot et al. 2019 WIREs Water",
+      "perha_central": null,
+      "validated": false
+    },
+    {
+      "name": "Amazon \u2192 Cerrado / Mato Grosso",
+      "source_lat": -8.0,
+      "source_lon": -62.0,
+      "sink_lat": -13.0,
+      "sink_lon": -55.0,
+      "source_label": "Southern Amazon (arc of deforestation)",
+      "sink_label": "Mato Grosso / MATOPIBA soy-maize belt",
+      "crop": "soy + maize",
+      "stakeholder": "ag-commodity investors, ABCD traders",
+      "citation": "O'Connor et al. 2021 ERL 16:084026",
+      "perha_central": null,
+      "validated": false
+    },
+    {
+      "name": "Eurasian boreal \u2192 Pontic-Caspian wheat",
+      "source_lat": 58.0,
+      "source_lon": 60.0,
+      "sink_lat": 50.0,
+      "sink_lon": 45.0,
+      "source_label": "West Siberian / Russian boreal forest",
+      "sink_label": "Ukraine / S. Russia / Kazakhstan wheat steppe",
+      "crop": "wheat",
+      "stakeholder": "hedge funds, sovereign food buyers",
+      "citation": "Pranindita et al. 2025 Nature Water",
+      "perha_central": null,
+      "validated": false
+    },
+    {
+      "name": "Indochina \u2192 Mekong Delta",
+      "source_lat": 16.0,
+      "source_lon": 106.0,
+      "sink_lat": 10.0,
+      "sink_lon": 106.0,
+      "source_label": "Annamite uplands (Laos, Cambodia, Vietnam)",
+      "sink_label": "Mekong Delta + South China rice",
+      "crop": "rice",
+      "stakeholder": "commodity funds, governments, conservation finance",
+      "citation": "Zhang et al. 2020 J. Climate 33:9213",
+      "perha_central": null,
+      "validated": false
+    }
+  ],
+  "_note": "Only Amazonas-La Plata is validated (backtested, RECON moisture weight; central USD 350/ha). The other five are research targets from the moisture-recycling literature (Nature Water 2024 doi:10.1038/s44221-024-00291-w; Nature Water 2025 doi:10.1038/s44221-025-00518-4; plus the per-corridor citations), each pairing a named teleconnection with a traded commodity or a sovereign water system and active deforestation. No per-hectare value is shown for an unvalidated corridor; that number is earned by running the same five-stage chain, not asserted."
+}

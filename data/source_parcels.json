@@ -1,0 +1,24 @@
+{
+  "total_ha": 324542,
+  "parcels": [
+    {
+      "name": "Ouro Verde",
+      "area_ha": 105869
+    },
+    {
+      "name": "Seringal Cuata",
+      "area_ha": 116700
+    },
+    {
+      "name": "Terra Nova",
+      "area_ha": 101973
+    }
+  ],
+  "source_box": {
+    "lat_min": -8.0,
+    "lat_max": -4.0,
+    "lon_min": -72.5,
+    "lon_max": -62.0
+  },
+  "_note": "Real names + areas (A_source = 324,542 ha). Geometry shown as the source bounding box; parcel polygons pending (provided privately)."
+}

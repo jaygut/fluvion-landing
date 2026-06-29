@@ -1,0 +1,23 @@
+{
+  "presets": [
+    {
+      "name": "Mid-size fund",
+      "exposure_usd": 100000000.0,
+      "scenario": "central",
+      "note": "illustrative"
+    },
+    {
+      "name": "Large bank book",
+      "exposure_usd": 500000000.0,
+      "scenario": "central",
+      "note": "illustrative"
+    },
+    {
+      "name": "Full UK soy book",
+      "exposure_usd": 2999750000,
+      "scenario": "central",
+      "note": "the whole UK-attributable soy book; reproduces the $1.42M headline VaR"
+    }
+  ],
+  "_note": "ILLUSTRATIVE exposures for the stress test, not real portfolio data. The VaR scales linearly with exposure off the reference UK book value (s_uk x P_soy x price = $3.00bn), with no fudge factor."
+}

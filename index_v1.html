@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluvion · Flying Rivers, priced.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/cinematic.css">
+<script src="vendor/deck.gl.min.js"></script>
+<script src="vendor/d3.v7.min.js"></script>
+<script src="vendor/scrollama.min.js"></script>
+<script src="data/bundle.js"></script>
+</head>
+<body>
+<div id="deckwrap"></div>
+<div class="vignette"></div>
+<div class="progress" id="prog"></div>
+<div class="brand">Flu<b>vion</b></div>
+<a class="skipto" href="report.html">Full report →</a>
+<div class="legend" id="legend"></div>
+
+<main class="story" id="story">
+
+  <section class="step center active" data-scene="0">
+    <div class="card">
+      <div class="eyebrow">Flying rivers</div>
+      <h1 class="hero-title">Flying <span class="a">Rivers</span></h1>
+      <p class="body">A forest in the Amazon breathes water into the sky. Weeks later it falls as rain on farms two thousand kilometres south. We follow that water back to its source, and put a price on the risk.</p>
+    </div>
+  </section>
+
+  <section class="step" data-scene="1">
+    <div class="card">
+      <div class="eyebrow">The blind spot</div>
+      <h2 class="head">Half of Britain's nature risk blows in from abroad.</h2>
+      <p class="body">The Green Finance Institute puts <span class="red">up to 12 percent of UK GDP</span> at risk from nature loss, and roughly half of it starts overseas. A large share rides the wind, as moisture one forest releases and another region drinks in. We could find no risk tool that follows that water back to its source, and none that grades the source it depends on: whether the forest making the rain is intact and steady, or thinning and volatile.</p>
+    </div>
+  </section>
+
+  <section class="step" data-scene="2">
+    <div class="card">
+      <div class="eyebrow">Where the water starts</div>
+      <h2 class="head">Three forests in Amazonas. 324,542 hectares.</h2>
+      <p class="body">Ouro Verde, Seringal Cuatá, and Terra Nova. Every year they lift billions of tonnes of water into the air. The soy belt downwind treats that as free rainfall: it has never paid for it, never insured it, and never asked whether the forest behind it is holding up.</p>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="3">
+    <div class="card">
+      <div class="eyebrow">The flying river</div>
+      <h2 class="head">About a fifth of the La Plata basin's rain comes from the Amazon.</h2>
+      <p class="body">We measured it from the moisture-tracking record, built on petabytes of atmospheric reanalysis that weather agencies run on supercomputers. The Amazon hands the La Plata basin <span class="hl">21.5 percent</span> of its rainfall, right inside the range the published science expects. This is the supply line that feeds one of the world's great breadbaskets.</p>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="4">
+    <div class="card">
+      <div class="eyebrow">The proof</div>
+      <h2 class="head">In 2022 the rivers ran thin, and the map turned red where it should.</h2>
+      <p class="body">The La Niña drought of 2021 and 2022 cut Rio Grande do Sul's soy by <span class="red">more than half</span> while the cerrado held steady. Our engine reproduces that split, which states fall and which hold. It also clears the bar on 2024, a year we held out a priori, before any scoring. This is a backtest, not a forecast.</p>
+    </div>
+  </section>
+
+  <section class="step" data-scene="5">
+    <div class="card">
+      <div class="eyebrow">The prize</div>
+      <h2 class="head">As a rain machine, this forest is worth $350 a hectare.</h2>
+      <p class="body">That is the value of the harvests it quietly protects downstream, counted over thirty years. It already beats the $295 a hectare the land itself sells for, the regional average from Brazil's land registry. And it counts only water, only soy, only one place the rain lands. The full number is larger.</p>
+      <div class="stats">
+        <div class="stat"><div class="v" id="s-perha">$350</div><div class="l">per hectare, central case ($167 to $532 across scenarios)</div></div>
+        <div class="stat"><div class="v" id="s-var">$1.42M</div><div class="l">the yearly UK loss on this corridor (central case)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="6">
+    <div class="card">
+      <div class="eyebrow">The grade</div>
+      <h2 class="head">Not every hectare holds the rain the same way.</h2>
+      <p class="body">A forest's condition does not change how much rain it makes on average. It changes how reliably it makes it. An intact, diverse forest keeps transpiring through drought; a degraded one falters under the same heat. So the source carries a grade. It does not move the $350, it moves the risk around it, and that reliability is what a risk number is made of.</p>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="7">
+    <div class="card">
+      <div class="eyebrow">Where this goes</div>
+      <h2 class="head">A price today. A live signal next.</h2>
+      <p class="body">We already watch that grade. From open satellite records we track the source forest's condition and re-state the risk as it changes, and the trend is not flat: the western Amazon has lost resilience for two decades, and the 2023 and 2024 droughts drove its evaporation sharply below normal. That sits beside the price, never inside it. Further out, a research path tests whether we can warn a season ahead, where the El Niño cycle gives the growing season real skill, and we will publish that skill before we ever call it a forecast.</p>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="8">
+    <div class="card">
+      <div class="eyebrow">The ask</div>
+      <h2 class="head">One corridor, proven. Two ways to back it.</h2>
+      <p class="body">One open core and one commercial layer, by the same company. The open engine is the auditable standard underneath; the commercial layer prices it and serves it, to an investment desk or an AI agent, by API. The same engine reads two ways: it prices the dependency for the desks that carry the downside, and it grades the source for the capital that protects it. The science is built, validated, and checked line by line. The next move is yours.</p>
+      <a class="cta" href="report.html">See the evidence, and try the live model →</a>
+      <p class="footnote">Built entirely from open public data and real computation. Every figure is indicative, not prudential grade. The live three model moisture ensemble is the next upgrade. <span class="defer">Phase 1B</span></p>
+    </div>
+  </section>
+
+</main>
+
+<div class="scroll-hint" id="hint">scroll ↓</div>
+<script src="js/cinematic.js"></script>
+</body>
+</html>

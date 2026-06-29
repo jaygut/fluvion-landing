@@ -1,0 +1,30 @@
+{
+  "stages": [
+    {
+      "stage": "S1 moisture provenance",
+      "confidence": "medium-high",
+      "caveat": "RECON, cross-checked by the AMSSRAB 3-model ensemble (all 3 agree, Amazon->La Plata 16-20%); full annual ensemble is the next step."
+    },
+    {
+      "stage": "S2 cascade / f_loss",
+      "confidence": "low",
+      "caveat": "f_loss is NOT backtestable (no deforestation counterfactual) -> reported as a scenario range, not a point."
+    },
+    {
+      "stage": "S3 yield response",
+      "confidence": "medium",
+      "caveat": "Annual elasticity validated on SIGN/RANK across states; magnitude under-predicted in severe drought years (seasonal/nonlinear)."
+    },
+    {
+      "stage": "S4 financial translation",
+      "confidence": "high",
+      "caveat": "Transparent published-coefficient translation; EPISTEMIC VaR (not a year-to-year aleatory tail)."
+    },
+    {
+      "stage": "S5 inverse asset value",
+      "confidence": "medium",
+      "caveat": "Depends on S1-S4; $/ha is a 30-yr-NPV lower bound (water + one crop)."
+    }
+  ],
+  "_note": "Confidence is per stage, carried in provenance; honesty is the product."
+}

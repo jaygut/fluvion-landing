@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluvion · A forest makes the rain. We priced it.</title>
+<meta name="description" content="The evidence behind Fluvion's teleconnected Water Value-at-Risk: a forest-to-harvest moisture chain validated against 22 years of records, with a full provenance ledger and a live model. Figures are indicative, not prudential-grade.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fluvion">
+<meta property="og:title" content="Fluvion · A forest makes the rain. We priced it.">
+<meta property="og:description" content="Forest-to-harvest moisture chain, validated against 22 years of harvests; full provenance ledger and a live in-browser model.">
+<meta property="og:image" content="https://jaygut.github.io/fluvion-landing/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://jaygut.github.io/fluvion-landing/report.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fluvion · A forest makes the rain. We priced it.">
+<meta name="twitter:image" content="https://jaygut.github.io/fluvion-landing/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%203C16%203%206%2015%206%2021a10%2010%200%200020%200C26%2015%2016%203%2016%203z'%20fill='%2300d4aa'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/report.css">
+<script src="vendor/d3.v7.min.js"></script>
+<script src="data/bundle.js"></script>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">Flu<span>vion</span></div>
+    <div class="tagline">The forest that makes the rain, priced.</div>
+    <nav id="nav">
+      <a href="#s1">1 · The short version</a>
+      <a href="#live" class="nav-live">▶ Try the live model</a>
+      <a href="#s-engine">&#9881; How the engine works</a>
+      <a href="#s2">2 · The gap nobody fills</a>
+      <a href="#s3">3 · The flying river</a>
+      <a href="#s4">4 · Forest to harvest</a>
+      <a href="#s5">5 · We checked it against history</a>
+      <a href="#s6">6 · What you are exposed to</a>
+      <a href="#s7">7 · How bad it can get</a>
+      <a href="#s-grade">&#9670; Grade the source</a>
+      <a href="#s-forward">&#8599; Where this goes</a>
+      <a href="#s-scale">&lowast; The scale</a>
+      <a href="#s8">8 · What we do not claim</a>
+      <a href="#s9">9 · How to back it</a>
+      <a href="#s-receipts">&#8596; People and machines</a>
+      <a href="#s10">10 · Every number, traced</a>
+    </nav>
+    <div class="ver" id="ver"></div>
+  </aside>
+
+  <main>
+    <!-- 1 -->
+    <section id="s1">
+      <h1>The Amazon's rain is worth $20 billion a year. We traced it to a single forest and priced the risk.</h1>
+      <p class="lede">Amazon forests breathe water into the sky, and the wind carries it a thousand miles to rain on the soy fields that feed global supply chains. UK pension funds and banks are exposed to that link. Science has valued that rain, but nobody has traced it back to a specific forest and priced the risk it carries. Fluvion does: it follows the flying rivers from forest to harvest, validates the chain against 22 years of harvest records, and turns it into two numbers a lender can use. What the risk is worth. What the forest is worth for holding the rain in place. And because a forest is not a generic pipe, it grades the source as well as pricing the dependency: how intact the forest is decides not how much rain it makes, but how reliably it makes it.</p>
+      <div class="kpis">
+        <div class="kpi"><div class="v" id="kpi-perha">$350/ha</div><div class="l">what the forest is worth as a rain machine, over 30 years ($167 to $532 across scenarios)</div></div>
+        <div class="kpi"><div class="v" id="kpi-var">$1.42M</div><div class="l">the yearly UK loss riding on this one corridor (central case)</div></div>
+        <div class="kpi"><div class="v">r = 0.45</div><div class="l">how well the engine matched a year held out before any scoring</div></div>
+      </div>
+      <div class="figure" id="fig-exposure">
+        <h3>Figure 1 · Why this is worth your attention</h3>
+        <p class="cap">The money already on the table, and where it comes from.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Green Finance Institute 2024 · Forests &amp; Finance 2024 · Baker et al. 2026</span><span class="conf conf-high">published sources</span></div>
+      </div>
+    </section>
+
+    <!-- live -->
+    <section id="live">
+      <h2><span class="num">▶</span>Try the live model</h2>
+      <p>This is a fast copy of the engine, a tiny model trained to reproduce the full physics, running in your browser with nothing behind it. Change the scenario, move the discount rate, or pick which forests are conserved, and watch the value and the risk update as you go. We checked it against the full physics and against history, and calibrated its risk figures to match the full engine.</p>
+      <div class="figure" id="fig-calc">
+        <h3>The Water Value-at-Risk calculator</h3>
+        <p>The big number is the forest's value as a piece of infrastructure: what one hectare is worth, over thirty years, for the harvests it keeps watered a thousand miles downwind. Set against the $295 a hectare the land itself sells for, that is the case for treating a standing forest as an investment rather than a donation. The three figures beneath it are the risk side of the same coin: the yearly UK-attributable soy loss riding on this one corridor at the high end of our estimate, the average of the higher estimates beyond it, and the honest fifth-to-ninety-fifth range. These are the uncertainty in the average yearly loss, not a forecast of any single year.</p>
+        <p class="cap">Every number is computed live. Move the scenario, the discount rate, or which forests are conserved, and the value and the risk update together. The bar sets the realistic range against the $295 land price.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">surrogate running client-side; its $/ha matches the full physics within 3 percent, and its VaR is calibrated to the physics per scenario</span><span class="conf conf-medium">indicative, not prudential grade</span></div>
+      </div>
+      <div class="figure" id="fig-stress">
+        <h3>Portfolio stress test</h3>
+        <p>Now point the same engine at a real book. Set the soy exposure you actually carry and pick how badly the forest's rain-making degrades, and it prices the two risk numbers for your portfolio: the high-end estimate of the yearly loss (Value-at-Risk), and the average of the worse estimates beyond it (Expected Shortfall). The presets step from a mid-size fund to a bank book to the full UK soy book, so the absolute dollars at stake are visible at every scale.</p>
+        <p class="cap">The risk scales with your exposure off the full-book reference. Try the presets to see how different portfolios fare. Indicative, not prudential grade.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">same surrogate, scaled to your exposure</span><span class="conf conf-medium">indicative, not prudential grade</span></div>
+      </div>
+    </section>
+
+    <!-- how it works -->
+    <section id="s-engine">
+      <h2><span class="num">&#9881;</span>How the engine works</h2>
+      <p>It helps to know what is under the hood, because the credibility rests on it. The engine is not a black box, and it is not new physics. It is a chain of peer-reviewed science, wired together and run as one calculation so the uncertainty carries through from end to end, then checked against what actually happened.</p>
+      <p>It runs in one direction, then reverses. Forward, it follows the water: how much moisture a forest sends downwind, how much of that rain is lost if the forest degrades, how much yield the missing rain costs, and how much money that is to a UK book. Backward, it flips the same chain to ask what the forest is worth, per hectare, for preventing that loss. Each link is an established relationship from the published literature, not something we invented.</p>
+      <p>The first link is the heavy one, and it is why this is not a laptop model. Tracing the moisture a forest releases to the rain it becomes a thousand miles downwind is the job of atmospheric moisture-tracking models, WAM2layers and UTrack, that follow water vapour through the sky as the winds carry it. They run on ERA5, the European reanalysis that reconstructs the global atmosphere hour by hour across decades and spans several petabytes. We remote-subset the reanalysis to the corridor rather than move the whole archive, and the tracking itself is high-performance-computing work, run on cluster nodes with hundreds of gigabytes of memory and terabytes of local scratch, not on a desk machine. From runs like these come the moisture-flow products the engine stands on, three moisture-tracking products that cross-check one another (they share the same ERA5 winds, so this is internal consistency, not full independence). Everything downstream is lighter: a crop-rainfall response measured by others from decades of official harvest and rainfall records, a standard financial translation, and a fifty-thousand-run Monte Carlo that carries the uncertainty through to the answer. The calculator above is a fast surrogate of the whole thing, trained to reproduce in your browser, in milliseconds, what the supercomputer-scale engine produces in full.</p>
+      <p>Three choices are what make it trustworthy rather than merely clever. We borrow the science instead of re-deriving it, so every physical step is someone else's peer-reviewed result, cited in the audit trail. We run the whole chain thousands of times across the uncertainty in every input, so the answer is always a calibrated range, never a single hopeful number. And we test it against twenty-two years of real harvests before asking anyone to trust it. The part that is genuinely ours is the integration and the validation, not the physics.</p>
+    </section>
+
+    <!-- 2 -->
+    <section id="s2">
+      <h2><span class="num">2</span>The gap nobody fills</h2>
+      <p>Every water and nature risk tool on the market scores the danger where the asset sits. The field. The mill. The river running past it. None of them trace the moisture back to the forest that made the rain in the first place. Putting a price on nature risk is not new, and we do not pretend it is. Following the rain upwind to its source, and pricing that link, is. It is the one column the whole industry leaves blank. There is a second blank beside it: even the tools that name a dependency on nature do not grade the condition of what is depended on, whether the source is intact and steady or thinning and volatile. Fluvion fills both, and we find no other tool that fills either.</p>
+      <div class="figure" id="fig-incumbent">
+        <h3>Figure 2 · What the tools can and cannot see</h3>
+        <p class="cap">A green box means the tool does it. The column that matters most, the source of the rain, is empty for everyone but us.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Capability survey across the major tools</span><span class="conf conf-medium">our reading of public docs</span></div>
+      </div>
+      <div class="figure" id="fig-comparison">
+        <h3>Figure 2b · How much of the cascade each tool covers</h3>
+        <p class="cap">Fluvion covers the full moisture-risk cascade from source forest to portfolio loss. Incumbents stop at the asset boundary.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Capability survey, scored on cascade coverage</span><span class="conf conf-medium">our reading of public docs</span></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section id="s3">
+      <h2><span class="num">3</span>The flying river</h2>
+      <p>Across South America's farm country, a large share of the rain is water the Amazon let go of days earlier and a thousand miles away. Scientists call it moisture recycling. We measured how much reaches the soy belt, straight from the moisture tracking record, and drew the path the water takes.</p>
+      <div class="callout">RECON gives <strong>21.5 percent</strong> for Amazon to La Plata on the annual benchmark, the number the engine uses. A separate growing-season cross-check (AMSSRAB, using WAM2layers, UTrack, and WaterSip) lands between <strong>16.2 and 20.4 percent</strong>, inside the same published <strong>12 to 35 percent</strong> corridor that Zemp and colleagues mapped in 2014. The full annual three-model ensemble remains the next upgrade.</div>
+      <div class="figure" id="fig-precip">
+        <h3>Figure 3 · The path the water takes</h3>
+        <p class="cap">Moisture leaving the three Amazonas forests, shown by how much reaches each place downwind. Green is the source, amber is the soy belt that drinks it in.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">RECON moisture record, cross-checked by the AMSSRAB 3-model ensemble</span><span class="conf conf-medium-high">confidence: medium-high</span></div>
+      </div>
+      <div class="figure" id="fig-graph">
+        <h3>Figure 4 · The supply line, as a network</h3>
+        <p class="cap">The source forest and the soy states it rains on. Thicker lines carry more of the source's moisture. Bigger dots carry more UK exposure. Mato Grosso is fed heavily and exposed heavily, so it matters most.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">RECON flows + soy production share</span><span class="conf conf-medium">state resolution</span></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section id="s4">
+      <h2><span class="num">4</span>From forest to harvest, step by step</h2>
+      <p>The engine runs five plain steps. Start with the water the forest sends downwind. Take a share of it away under a drought scenario. Turn the missing rain into lost yield, using a crop response measured by other scientists. Turn lost yield into lost money. Then flip the whole chain around to ask what the forest is worth for preventing that loss. Each step carries its own number and an honest mark for how sure we are.</p>
+      <div class="figure" id="fig-cascade">
+        <h3>Figure 5 · The five steps, with real numbers</h3>
+        <p class="cap">The central case, run on the typical value of each input. The $403 here is a single best-guess run. The headline $350 is the middle of thousands of runs across the full range of uncertainty, which is the fairer number.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The engine, central scenario</span><span class="conf conf-medium">confidence shown per step</span></div>
+      </div>
+      <div class="figure" id="fig-mc">
+        <h3>Figure 6 · The full range, not a single guess</h3>
+        <p class="cap">We run the chain fifty thousand times across every input's uncertainty. This is the spread of the yearly loss, with the risk lines marked.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Fifty thousand runs, fixed seed</span><span class="conf conf-high">reproducible</span></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="s5">
+      <h2><span class="num">5</span>We checked it against history</h2>
+      <p>A model is only worth trusting if it matches what already happened. So we tested ours against the real harvests, state by state, year by year. In the La Niña drought of 2021 and 2022, the south of Brazil collapsed and the centre held. The engine reproduces that split. It also passes on 2024, a year we held out a priori, before any scoring.</p>
+      <div class="callout warn">We are honest about what this proves. The engine gets the <strong>pattern</strong> right, which states fall and which hold, not the exact size of each drop. A simple yearly rule cannot fully capture a 58 percent collapse in Rio Grande do Sul from a 13 percent shortfall in rain. The strength of the result rests on about <strong>22 separate years</strong> of evidence, not on any single year: the average year-on-year correlation is about <strong>0.3</strong>, with roughly a <strong>one in 250</strong> chance of being luck. Some calmer years show no signal at all. The engine is a drought detector, not a crystal ball, and we say so.</div>
+      <div class="figure" id="fig-skill">
+        <h3>Figure 7a · How well it tracked each year</h3>
+        <p class="cap">Each bar is a year. Higher means the engine matched that year's harvest pattern better. The drought years stand out, which is exactly where it should work.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Official soy harvests and rainfall, 2003 to 2024</span><span class="conf conf-medium">state level</span></div>
+      </div>
+      <div class="figure" id="fig-bt2022">
+        <h3>Figure 7b · The 2022 drought, observed and predicted</h3>
+        <p class="cap">Left is what really happened. Centre is what the engine said. Red is loss, green is resilience. The south goes red in both.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Official harvests and rainfall</span><span class="conf conf-medium">pattern, not exact size</span></div>
+      </div>
+      <div class="figure" id="fig-finance">
+        <h3>Figure 8 · The money version of the same test</h3>
+        <p class="cap">Our estimate of the 2022 soy loss against a published figure for the same event. Both count soy only, at the same price.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Engine vs Battisti et al. 2024</span><span class="conf conf-medium">within a sensible band</span></div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="s6">
+      <h2><span class="num">6</span>What you are exposed to, and what prevention costs</h2>
+      <p>The engine gives two numbers. The first is your exposure: how much money a year rides on this forest's rain. The second is the asset value: what the forest is worth for preventing that loss, per hectare, over 30 years. Baker and colleagues valued Amazon rainfall in 2026 at around 20 billion dollars a year. Our contribution is to turn that idea into a tested, parcel-specific risk number, and a per hectare value you can compare to a land price.</p>
+      <div class="figure" id="fig-parcel">
+        <h3>Figure 9 · What the forest is worth per hectare</h3>
+        <p class="cap">The value as a rain machine, across mild to severe scenarios, with the land price for comparison. The central case clears the land price; the cautious case does not. This counts only water and only soy.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The engine, backward pass</span><span class="conf conf-low">a scenario range, not a point</span></div>
+      </div>
+      <div class="figure" id="fig-sobol">
+        <h3>Figure 10 · What the answer hangs on</h3>
+        <p class="cap">Which input drives the result most. The forest's share of the rain dominates, which is exactly why measuring it better is the next move.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Sensitivity of the per hectare value</span><span class="conf conf-high">measured</span></div>
+      </div>
+      <div class="figure" id="fig-surface">
+        <h3>Figure 10b · The whole landscape of outcomes</h3>
+        <p class="cap">The per hectare value for every combination of two key unknowns. Our measured value sits in the marked band.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The engine, swept across inputs</span><span class="conf conf-medium">deterministic</span></div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section id="s7">
+      <h2><span class="num">7</span>How bad it can get</h2>
+      <p>How much money is at risk depends on how much of the forest's rain making is lost. We run three scenarios, mild to severe, anchored to published work on Amazon tipping points. The map shows where the exposure sits today: the states that grow the most soy have the most to lose.</p>
+      <div class="figure" id="fig-scenario">
+        <h3>Figure 11 · Three scenarios, and where the exposure lives</h3>
+        <p class="cap">The yearly risk under each scenario, beside the states that carry the exposure by how much soy they grow.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The engine, three scenarios, plus official production</span><span class="conf conf-low">scenario driven</span></div>
+      </div>
+      <div class="figure" id="fig-timeline">
+        <h3>Figure 11c · The value over time</h3>
+        <p class="cap">The per-hectare avoided-loss value across scenarios, projected over 30 years. Hover to see the values at any point.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The engine, three scenarios over the 30-year horizon</span><span class="conf conf-low">scenario driven</span></div>
+      </div>
+    </section>
+
+    <!-- grade the source -->
+    <section id="s-grade">
+      <h2><span class="num">&#9670;</span>Not all hectares are equal: the grade of the source</h2>
+      <p>Everything so far has priced the dependency: what the downstream harvest is worth, and what the forest is worth for holding the rain in place. But a forest is not a pipe with a single number. It has a condition, and the condition decides not how much rain it makes, but how reliably it makes it. This is the second half of the thesis: grade the source, price the dependency.</p>
+      <p>The science here is narrow, and we keep it narrow on purpose, because the easy version is wrong. A hostile reviewer would dismantle "more biodiversity, more rain" in one question, and they would be right to. What the evidence actually says is about stability, not average. In a process-based simulation, a forest richer in hydraulic traits loses far less biomass under a severe drought, and the authors are explicit that mean transpiration does not rise with diversity: the gain is a fall in the standard deviation of the water flux (Langan et al. 2025, Nature Communications 16:8246). Drier, degraded forests are measurably less diverse and slower to respond, with less of the redundancy that buffers function after a shock (Aguirre-Gutierrez et al. 2022, Nature Ecology and Evolution 6:878), and degraded patches lose evaporation stability under exactly the hot, dry extremes that matter while intact high-biomass patches hold (Longo et al. 2025, ERL 20(5)). So an intact, diverse forest is a steadier supplier of the rain its downwind assets depend on. A degraded one delivers the same average in a calm year and falls short when it is hit.</p>
+      <div class="callout">The one line a sharp reviewer will test, so we state it first: biodiversity and intactness <strong>stabilize</strong> the water service, lowering its variance and its drought-tail. They <strong>do not raise its mean</strong>. We never say more biodiversity makes more rain, and the grade never lifts the $350.</div>
+      <p>That null on the average is what lets the grade map cleanly onto a risk number instead of fudging it. A Water-VaR is a statement about a loss distribution, a middle and a spread. The forest's share of the rain, <code>w_soybelt</code>, sets the middle, and that is where the $350 lives, unchanged. Source condition sets the spread and, because resilience is drifting, the direction of travel:</p>
+      <div class="grade-compare">
+        <div class="gbox intact">
+          <h4>Intact, diverse, redundant source</h4>
+          <p>Holds its evaporation through drought. A smaller drought-year shortfall, a thinner downside. Resilience flat or recovering.</p>
+          <p class="verdict good">A steadier, thinner-tailed supply. The same average service, a narrower loss distribution. A lower-Water-VaR source to depend on.</p>
+        </div>
+        <div class="gbox degraded">
+          <h4>Degraded, thinning, resilience-losing source</h4>
+          <p>Loses evaporation when it is hit. A larger drought-year shortfall, a fatter downside. Resilience trending down, and self-amplifying.</p>
+          <p class="verdict bad">The same average today, a worse downside and a worse trajectory. A higher-Water-VaR, declining-quality water asset.</p>
+        </div>
+      </div>
+      <div class="callout warn"><b>What this is, and what it is not.</b> This is not a multiplier we bolt onto the price. There is no source-grade term in the $350, in the VaR, or in <code>w_soybelt</code> today, and the central $350 will never carry a grade multiplier. Source condition enters in two honest places only: a descriptive monitor that shows the source's observed condition beside the price (the next section), and a research coupling, a link from source condition to downwind-rainfall variance, that no published study has yet estimated. We state it as mechanism-supported and to be validated, never as demonstrated.</div>
+    </section>
+
+    <!-- forward -->
+    <section id="s-forward">
+      <h2><span class="num">&#8599;</span>Where this goes: from a price to a signal</h2>
+      <p>The last section said source condition is a variance and trend term, not a price multiplier. This section is how we observe it. The $350 is a static value, audited against twenty-two years of history; making it live means watching the grade of the source behind it and re-stating the risk as that grade moves. The proposal grows along two axes. This is the first: depth, making the price live. The next section is the second: breadth, more corridors. We move down the depth axis one validated step at a time, and we are precise about what is built, what is buildable now, and what still has to be earned.</p>
+      <p>The grade is a moving quantity, and it is moving the wrong way. Resilience has fallen across most of the Amazon since the early 2000s, fastest in the drier, human-proximate west where this corridor's source sits (Boulton et al. 2022), and the 2023 to 2024 drought set records in those same signatures (Buras et al. 2026). The clearest bridge from source condition to downwind rain runs through our own physics: a 2026 Nature study applies UTrack, the same moisture-tracking model behind Fluvion's S1, and finds that deforestation dries the forest's own rainfall, with roughly two-thirds of the Amazon at risk of shifting toward a degraded state below 2 degrees of warming once clearing reaches about 22 to 28 percent, against the roughly 17 to 18 percent already lost (Wunderling et al. 2026). That is why a monitor, not a one-time report, is the right instrument: the thing we grade is drifting.</p>
+      <div class="tier-ladder">
+        <div class="tier t1">
+          <div class="tier-rail"><span class="tier-num">Tier 1</span><span class="tier-badge live">live</span></div>
+          <div>
+            <h4>The structural valuation</h4>
+            <p>Everything on this page. One validated corridor, priced and inverted to a per-hectare value, with every number traced to data or a real computation.</p>
+            <div class="gate"><b>Gate:</b> the moisture physics and the 22-year backtest, both passed. This is what we sell today.</div>
+          </div>
+        </div>
+        <div class="tier t2">
+          <div class="tier-rail"><span class="tier-num">Tier 2</span><span class="tier-badge now">buildable now</span></div>
+          <div>
+            <h4>The forest-condition monitor</h4>
+            <p>Watch the source forest's condition from open satellite records, its evaporation and its greenness, and re-state the risk as conditions change. This describes what the forest is doing; it does not predict the harvest. It is the static price, kept current.</p>
+            <div class="gate"><b>Gate:</b> data provenance and a false-alarm check on the resilience indicators. The monitor sits beside the price, never inside it, until a link to the harvest is earned.</div>
+          </div>
+        </div>
+        <div class="tier t3">
+          <div class="tier-rail"><span class="tier-num">Tier 3</span><span class="tier-badge research">research</span></div>
+          <div>
+            <h4>The skill-validated early warning</h4>
+            <p>A season-ahead signal, built on the genuine seasonal-forecast skill the El Niño cycle gives southern Brazil and the lower La Plata in the growing season. We reserve the words forecast and early warning for this tier, and only behind a published test that beats the simple baselines at a stated lead time.</p>
+            <div class="gate"><b>Gate:</b> a pre-registered hindcast over the historical drought years. The honest catch we will state plainly: the seasonal skill is strongest in southern Brazil, while the UK's largest soy exposure sits in Argentina, where it is weakest.</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">The naming is the discipline. Today Fluvion is a validated price with a condition monitor in build. It becomes a forecaster the day a published hindcast earns the word, and not a sentence before.</div>
+      <div class="figure" id="fig-condition">
+        <h3>Figure 11d &middot; The forest-condition monitor (Tier 2, descriptive)</h3>
+        <p class="cap">Observed source-forest condition over the box: the evaporation anomaly (TerraClimate actual ET) vs a stated climatology, with the deforestation context (Hansen). The evaporation signal is sign-checked on real data; the 2023 drought drove source-box evaporation 22 to 43 percent below normal in the August to October dry-season months (the 2024 dry season ran deeper still). That collapse is cross-checked against two further ET paradigms: a satellite record (MODIS MYD16A2GF) and a reanalysis (ERA5). The strong, leakage-free result is sign agreement: all three, a water-balance model, a satellite, and a reanalysis, show the source-box dry-season evaporation falling in both 2023 and 2024, so the signal is not a single-model artifact. The year-to-year correlation is weaker, and we do not overstate it. It clears our 0.50 line only as a mean, and only because the two water-balance-family models (TerraClimate and ERA5) share forcing and correlate at 0.76, while the one genuinely independent leg, the satellite, sits below the line at 0.43 to 0.49. Under a median, an all-pairs rule, or a holdout that excludes the 2023 and 2024 event years, the correlation does not clear. So we report the cross-check as partly corroborated, not robust: sign-strong, correlation-weak. This is a descriptive cross-check, not a validation of the price and not a forecast. Greenness (raw MODIS EVI) is held back on sign-validity grounds: its dry-season anomaly is confounded by the well-known sun-sensor green-up artifact (Morton et al. 2014), so it moves the wrong way under drought here and needs a geometry-corrected version first. This describes what the forest is doing; it does not forecast the harvest. It sits beside the price, never inside it. The declining-resilience (critical-slowing-down) layer is also held back until its false-alarm rate is characterized.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">TerraClimate aet (CC0), Hansen GFC (CC BY 4.0); MODIS EVI loader committed, greenness deferred</span><span class="conf conf-medium">descriptive, beside the price</span></div>
+      </div>
+      <div class="callout"><b>How we keep ourselves honest.</b> Before we showed this signal we asked whether the 2023 and 2024 evaporation collapse was an artifact of one model, and we fixed the pass and fail line in advance. With two products the cross-check was weak (0.49). We added the reanalysis leg we had named, the mean correlation crossed to 0.56, and our first rule called that robust. Then an adversarial review pushed back, and it was right: that mean is carried by the two water-balance-family models (TerraClimate and ERA5), which share forcing, and it is inflated by the very 2023 and 2024 years the verdict is about. Strip those two years out and the correlation falls to 0.48; on the pre-2023 record it is 0.35; the one genuinely independent leg, the satellite, never clears the line. So we did not keep the robust label, and we did not move the 0.50 line either. We added the stricter rules the reviewer asked for, report the correlation under all of them, and downgraded to partly corroborated: the sign agreement in 2023 and 2024 is the strong, real result, and the year-to-year correlation is weak. We also show the weakest number we could have buried: month to month the streams barely track (0.19). Every figure below is regenerated by a committed test (<code>pytest tests/test_ei_condition.py</code>) that turns red if a number drifts.</div>
+      <p>The same self-check, in three honest views. None of them touches the price; they describe the condition signal and how far an independent eye corroborates it.</p>
+      <div class="figure" id="fig-cv-scatter">
+        <h3>Figure 11e &middot; Two instruments, two time-scales</h3>
+        <p class="cap">Two independent ET products plotted against each other: the water-balance model against the most independent leg, the satellite. This is the strictest of the three pairs (the others agree more), which is why we show it. Month to month (left) they barely track: the cloud is wide and the correlation is weak. In the dry season, taken one year at a time (right), they line up, and 2023 and 2024 fall together in the stressed quadrant. We pre-committed to the dry-season window because that is where the drought signal lives, and we report the weaker monthly number anyway. Standardized anomalies; an agreement statistic over a small sample, not a probability.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">TerraClimate aet (CC0) vs MODIS MYD16A2GF (public domain); anomalies only</span><span class="conf conf-medium">descriptive, beside the price</span></div>
+      </div>
+      <div class="figure" id="fig-cv-gauge">
+        <h3>Figure 11f &middot; The robustness check, with nothing hidden</h3>
+        <p class="cap">Our rule for calling the cross-check robust requires the direction to agree in both 2023 and 2024 and the year-to-year correlation to clear 0.50, not only on the mean but on the stricter rules. The direction test passes. The correlation clears 0.50 only as a mean (0.56); under the median, the weakest pair, and a holdout that excludes the 2023 and 2024 event years it falls short, because the mean is carried by the two co-forced water-balance-family models. So the honest label is partly corroborated, not robust. The 0.50 line was fixed before we saw the answer, and we left it there. This is a cross-paradigm term, not a validation of the price.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Pre-registered thresholds; correlation reported under mean, median, all-pairs, and holdout rules</span><span class="conf conf-medium">honest go/no-go, not massaged</span></div>
+      </div>
+      <div class="figure" id="fig-cv-fingerprint">
+        <h3>Figure 11g &middot; A western-box fingerprint</h3>
+        <p class="cap">The ensemble dry-season anomaly for each drought year. The box sits in the western Amazon, so the 2015 to 2016 El Niño, which stressed the eastern and southern Amazon, barely registers, while the 2023 to 2024 basin-wide drought stresses it hard. The years 2021 and 2022, the window of the priced history backtest, were already drifting down. This describes which droughts reach this particular forest; it is not a claim that the monitor selects or predicts them.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Ensemble dry-season anomaly; whiskers are the inter-product range</span><span class="conf conf-medium">small sample, a count and a spread</span></div>
+      </div>
+      <div class="callout"><b>What a careful reviewer asks first.</b>
+        <details><summary>Is the collapse just a TerraClimate artifact?</summary> No. Two further products, a satellite (MODIS MYD16A2GF) and a reanalysis (ERA5), show the same source-box dry-season fall in both 2023 and 2024. Three paradigms agree in direction; we report the magnitude and correlation gaps openly, and we treat only the satellite as a genuinely independent observation.</details>
+        <details><summary>Is it robust, or partly corroborated?</summary> Partly corroborated. Our rule needs the correlation to clear 0.50 under stricter rules, not just the mean. It clears only as a mean (0.56), carried by the two co-forced models (TerraClimate and ERA5, 0.76); under the median (0.49), the weakest pair (0.43), and a holdout that excludes the 2023 and 2024 events (0.48), it does not. The strong, real result is the sign agreement in both years. We did not move the threshold; we report the correlation under every rule and label it partly corroborated, not robust. It is a cross-paradigm term, not a validation of the price and not a forecast.</details>
+        <details><summary>Are the three paradigms truly independent?</summary> Only the satellite is. It reads the surface from orbit. The water-balance model (TerraClimate) and the reanalysis (ERA5) are both precipitation-and-radiation-forced over the same box, so their high agreement (0.76) is shared-forcing coherence, not two independent instruments converging. We lean on the satellite for genuine independence, and it sits below the line at 0.43 to 0.49, which is exactly why the verdict is partly corroborated, not robust.</details>
+        <details><summary>Why does the box barely move in the 2015 to 2016 drought?</summary> It is a western-Amazon box, and that El Niño stressed the eastern and southern Amazon more. The 2023 to 2024 basin-wide drought reached it. This is descriptive scope, the place the monitor watches, not a claim that it knows which droughts matter.</details>
+        <details><summary>Is the satellite leg only a few pixels?</summary> It is a box-representative sample of three points (the open subset service is rate limited), at the same locations as the greenness audit, not a full-box raster. We use it as a tie-breaker on direction, not as a magnitude anchor.</details>
+      </div>
+      <div class="figure" id="fig-signal-maturity">
+        <h3>Figure 11h &middot; The signal-maturity ladder</h3>
+        <p class="cap">The monitor is built one honest signal at a time. Evaporation is shipped and cross-checked; deforestation is a context line; greenness and the resilience indicator are deferred until they pass their own checks; and early warning is reserved for Tier 3 behind a published hindcast. Each row states what would promote it, so the staging is visible rather than implied, and the firewall holds at every rung.</p>
+        <div class="canvas"></div>
+      </div>
+    </section>
+
+    <!-- scale -->
+    <section id="s-scale">
+      <h2><span class="num">&lowast;</span>The scale: six corridors, one platform</h2>
+      <p>One corridor is proven. Five more are the best next targets, chosen from the moisture-recycling literature so that each pairs a named source-to-sink teleconnection with a globally traded commodity or a sovereign water system, and a forest under active loss. The same flying-river mechanism connects forests to farms and cities across the world, not only the tropics. Each follows the same five-stage chain, and earns a per-hectare value and a portfolio VaR once it is validated. The table below shows the targets and who each one serves.</p>
+      <div class="figure" id="fig-global">
+        <h3>Figure 11b &middot; The global corridor map</h3>
+        <p class="cap">Six corridors, one validated. The other five are research targets, each grounded in a named moisture-recycling study. Only the Amazonas to La Plata value is computed; the rest are earned by running the same chain.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Moisture-recycling literature; Amazonas to La Plata validated</span><span class="conf conf-low">five targets preliminary, not validated</span></div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section id="s8">
+      <h2><span class="num">8</span>What we do not claim</h2>
+      <p>The honesty is the point. We cannot yet prove how much rain a given amount of deforestation removes, because real droughts come from many causes at once, so we report the forest value as a range, not a single figure. The risk number is the uncertainty in the average yearly loss, not a worst case tail. We never claim a calibrated 95 percent confidence off a handful of events, only an honest floor. And the $350 is a floor itself: water, one crop, one place the rain lands. The real number is larger. We are equally careful on the source grade: we do not claim that biodiversity makes more rain. The defensible claim is narrower, that an intact, diverse forest holds its output more steadily under drought, a lower variance and a thinner tail, not a higher average, and we never let source condition lift the $350. It is a variance and trend term, and a coupling still to be validated. On the forward roadmap we hold the same line: the condition monitor describes what the forest is doing, it does not forecast the harvest, and nothing earns the words forecast or early warning until a published hindcast beats the simple baselines at a stated lead time.</p>
+      <div class="figure" id="fig-ladder">
+        <h3>Figure 12 · How sure we are, step by step</h3>
+        <p class="cap">Each step of the chain, with a plain mark for confidence and the reason behind it.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The provenance record</span><span class="conf conf-medium">honest by design</span></div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section id="s9">
+      <h2><span class="num">9</span>How to back it</h2>
+      <p>Fluvion is infrastructure: the risk-pricing layer for the upwind half of nature risk that no asset-coordinate tool prices today. It is built to be backed in two ways, open and commercial, by the same company. The open core is the auditable standard; the commercial layer prices and serves it to institutions; and keeping the two cleanly separated is what lets a buyer trust the number and still verify it.</p>
+      <div class="ask-grid">
+        <div class="ask-card">
+          <h4>Track A · The open foundation</h4>
+          <p class="ask-amount">Open core · $1.5M</p>
+          <p>We run the open engine as a company, not a research project. This builds the open, auditable risk standard: one signed computation per corridor, its full provenance graph, the next corridors, and the forecast-skill validation that earns the forward layer, all on an open endpoint anyone can read and re-check. The open core is the moat and the distribution at once. It is what makes the priced layer on top worth trusting, and it ships as product from day one.</p>
+        </div>
+        <div class="ask-card">
+          <h4>Track B · The commercial instrument</h4>
+          <p class="ask-amount">Commercial layer · $3M seed</p>
+          <p>For <b>investment firms, hedge funds, regenerative banks, and reinsurers</b>: per-hectare avoided-loss values and portfolio VaR price the upwind supply-chain exposure that asset-coordinate tools miss. It is delivered as a metered API and an MCP endpoint, so a portfolio system or an AI agent can pull a corridor's value, its provenance, and its confidence and act on it directly. The forest-condition monitor adds a recurring signal, and the early-warning layer follows once its skill is published. Decision-useful, sold on demand for awareness, not on a regulatory mandate.</p>
+        </div>
+      </div>
+      <div class="figure" id="fig-gates">
+        <h3>Figure 13 · The checks, and where they stand</h3>
+        <p class="cap">Each gate is a go or no go with evidence behind it. These have passed.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">The validation record</span><span class="conf conf-high">evidenced</span></div>
+      </div>
+    </section>
+
+    <!-- receipts / agentic -->
+    <section id="s-receipts">
+      <h2><span class="num">&#8596;</span>Built for people and machines</h2>
+      <p>Most analytics give you a number. Fluvion gives you a number with its receipt. Each valuation is computed once, from open peer-reviewed science and named datasets, then published in two forms from that single source. For people, it becomes the investor report you are reading, a one-page corridor tear sheet for the investment committee, and a live calculator to flex scenarios. For software, the identical figures become a structured, signed risk object that other systems and AI agents can query over an API or an MCP endpoint, and verify directly. Every figure travels with its provenance and its confidence, so a person can read it and an automated system can act on it or audit it, without anyone re-deriving the science. Nothing in the two views can drift apart, because both render the same signed result.</p>
+      <table class="dual-table">
+        <thead><tr><th>For people</th><th>For machines</th></tr></thead>
+        <tbody>
+          <tr><td>The report, the one-page tear sheet, the live calculator</td><td>A signed risk object and a direct feed that other software and AI agents can query</td></tr>
+          <tr><td>Read it, present it, decide</td><td>Consume it, recheck it, plug it into a portfolio view</td></tr>
+        </tbody>
+      </table>
+      <p class="dual-foot">Both are the same verified computation, shown two ways.</p>
+      <div class="figure" id="fig-cro">
+        <h3>The Corridor Risk Object, shown both ways</h3>
+        <p class="cap">The same verified result, for a person and for a machine. On the right is an illustrative shape of the structured object an agent pulls, over an API or an MCP endpoint: the value, the risk, the condition cross-check and its honest verdict, the provenance, and a claim gate that tells the consumer what it may and may not do. The gate is fixed: display only, never a price input, never a forecast. This is a client-side illustration of the shape, not a live endpoint.</p>
+        <div class="canvas"></div>
+      </div>
+      <div class="callout">In a market where software now reads data faster than people do, the value is not the number, it is the verifiable trail attached to it. Fluvion ships decisions with receipts: every figure traces to its source, carries its confidence, and stays honest about what is proven and what is not. Indicative, not prudential grade; the $350 a hectare is a 30-year lower bound.</div>
+    </section>
+
+    <!-- 10 -->
+    <section id="s10">
+      <h2><span class="num">10</span>Every number, traced to its source</h2>
+      <p>Nothing here is invented. Every figure comes from a real calculation or a published source. This is the audit trail. Filter by confidence, and read the source behind any number.</p>
+      <div class="figure" id="fig-prov">
+        <h3>Figure 14 · The full record</h3>
+        <p class="cap">Every quantity with its value, its source, and how sure we are.</p>
+        <div class="canvas"></div>
+        <div class="prov"><span class="src">Exported straight from the engine</span><span class="conf conf-high">reproducible</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<footer>
+  Fluvion is an open engine that prices the rain one forest sends to another. Every figure is computed from real data, nothing is invented. The numbers are indicative, not prudential grade. Generated <span id="gen"></span>.
+</footer>
+<script src="js/utils.js"></script>
+<script src="js/figures.js"></script>
+<script src="js/emulator.js"></script>
+<script src="js/interactive.js"></script>
+<script src="js/report.js"></script>
+</body>
+</html>

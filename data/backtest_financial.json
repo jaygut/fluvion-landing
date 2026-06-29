@@ -1,0 +1,33 @@
+{
+  "engine_gross_mt": 17.184112047040767,
+  "engine_net_mt": 13.757798914697835,
+  "engine_gross_usd_bn": 9.279420505402014,
+  "engine_net_usd_bn": 7.429211413936831,
+  "ratio_to_benchmark": 0.5692896015584057,
+  "ratio_net": 0.45577984134581784,
+  "price_usd_t": 540.0,
+  "within_band": 1.0,
+  "battisti_usd_bn": 16.3,
+  "battisti_mt": 30.0,
+  "battisti_yield_loss_pct": 23.8,
+  "battisti_southern_share_pct": 93.6,
+  "by_state_mt": [
+    [
+      "RS",
+      7.455423411875174
+    ],
+    [
+      "PR",
+      5.62663935907439
+    ],
+    [
+      "MS",
+      3.589716735015585
+    ],
+    [
+      "SC",
+      0.5123325410756182
+    ]
+  ],
+  "_source": "Engine vs Battisti et al. 2024 (Agriculture/MDPI 14(12):2144). Both soy-only; engine is a conservative trend counterfactual."
+}

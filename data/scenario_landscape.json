@@ -1,0 +1,103 @@
+{
+  "scenario_var": {
+    "low": {
+      "VaR95": 758160.1744881647,
+      "ES95": 1029980.8704612389
+    },
+    "central": {
+      "VaR95": 1416743.3956668659,
+      "ES95": 1884825.6133946292
+    },
+    "high": {
+      "VaR95": 2101797.4511666186,
+      "ES95": 2774377.7624392835
+    }
+  },
+  "f_loss": {
+    "low": 0.25,
+    "central": 0.5,
+    "high": 0.75
+  },
+  "production_share": [
+    {
+      "uf": 51,
+      "state": "MT",
+      "production_t": 38396410.0,
+      "share_pct": 27.5
+    },
+    {
+      "uf": 41,
+      "state": "PR",
+      "production_t": 18689393.0,
+      "share_pct": 13.4
+    },
+    {
+      "uf": 43,
+      "state": "RS",
+      "production_t": 18247609.0,
+      "share_pct": 13.0
+    },
+    {
+      "uf": 52,
+      "state": "GO",
+      "production_t": 16973882.0,
+      "share_pct": 12.1
+    },
+    {
+      "uf": 50,
+      "state": "MS",
+      "production_t": 11303640.0,
+      "share_pct": 8.1
+    },
+    {
+      "uf": 29,
+      "state": "BA",
+      "production_t": 7668295.0,
+      "share_pct": 5.5
+    },
+    {
+      "uf": 31,
+      "state": "MG",
+      "production_t": 7740542.0,
+      "share_pct": 5.5
+    },
+    {
+      "uf": 17,
+      "state": "TO",
+      "production_t": 4343438.0,
+      "share_pct": 3.1
+    },
+    {
+      "uf": 21,
+      "state": "MA",
+      "production_t": 4073259.0,
+      "share_pct": 2.9
+    },
+    {
+      "uf": 22,
+      "state": "PI",
+      "production_t": 3811694.0,
+      "share_pct": 2.7
+    },
+    {
+      "uf": 35,
+      "state": "SP",
+      "production_t": 3626440.0,
+      "share_pct": 2.6
+    },
+    {
+      "uf": 42,
+      "state": "SC",
+      "production_t": 2733806.0,
+      "share_pct": 2.0
+    },
+    {
+      "uf": 11,
+      "state": "RO",
+      "production_t": 2221610.0,
+      "share_pct": 1.6
+    }
+  ],
+  "flores_ref": "Flores et al. Nature 2024: 10-47% of the Amazon exposed to tipping by 2050 (exposure, not direct moisture loss).",
+  "_note": "VaR95 by scenario is real (run_pipeline). The state map shows soy PRODUCTION SHARE (real IBGE 2024) as the spatial exposure proxy; the engine does not allocate loss per state."
+}
