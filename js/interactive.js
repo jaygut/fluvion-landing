@@ -1,5 +1,5 @@
 // interactive.js - the live in-browser Water Value-at-Risk calculator + moisture graph.
-// Powered by FLUVION_EMU (the surrogate running client-side). Real engine, no backend.
+// Powered by FLUVION_EMU: the open five-stage engine reproduced client-side. No backend, no trained weights.
 
 // ---------------------------------------------------------------- //
 // Live Water Value-at-Risk calculator

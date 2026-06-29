@@ -1,29 +1,27 @@
-// emulator.js - the Fluvion serving surrogate, running client-side in the browser.
-// Loads the exported weights from window.FLUVION_DATA.emulator and answers Water Value-at-Risk
-// queries with a Monte Carlo over the parameter priors. No backend. Matches the Python
-// surrogate exactly on identical inputs (verified headless).
+// emulator.js - the Fluvion OPEN ENGINE, reproduced client-side in the browser.
+// Reads the published coefficients from window.FLUVION_DATA.emulator (constants + priors) and
+// runs the engine's exact five-stage forward model in a Monte Carlo over the parameter priors.
+// No trained weights, no backend: this is the open model itself, not a learned approximation.
 (function () {
   const EMU = window.FLUVION_DATA && window.FLUVION_DATA.emulator;
   if (!EMU) return;
-  const S = EMU.surrogate;
+  const C = EMU.constants || {};
 
-  // ---- surrogate forward: 5 params -> [per_ha, uk_loss] ----
-  function forward(x) {
-    const xs = x.map((v, i) => (v - S.x_mean[i]) / S.x_scale[i]);
-    const H = S.W1[0].length;            // hidden units
-    const h = new Array(H);
-    for (let j = 0; j < H; j++) {
-      let a = S.b1[j];
-      for (let i = 0; i < x.length; i++) a += xs[i] * S.W1[i][j];
-      h[j] = a > 0 ? a : 0;              // relu
-    }
-    const out = new Array(S.W2[0].length);
-    for (let k = 0; k < out.length; k++) {
-      let a = S.b2[k];
-      for (let j = 0; j < H; j++) a += h[j] * S.W2[j][k];
-      out[k] = Math.exp(a * S.y_scale[k] + S.y_mean[k]) - 1;
-    }
-    return out;                          // [per_ha, uk_loss]
+  // ---- open forward model: [w, f_loss, eps, price, discount] -> [per_ha, uk_loss].
+  //      Identical to src/fluvion/uq/forward.py::asset_per_ha; fixed coefficients are EMU.constants. ----
+  function forwardModel(x) {
+    const w = x[0], f = x[1], eps = x[2], price = x[3], disc = x[4];
+    const etVol = C.A_source_ha * 1e4 * C.et_rate_m_yr;        // m3/yr lifted by the source
+    const volSink = etVol * w;                                  // reaches the sink (share w)
+    const dRfull = volSink / (C.A_soybelt_ha * 1e4) * 1000.0;   // mm/yr attributable rainfall
+    const dRlost = f * dRfull;                                  // mm/yr lost under the scenario
+    const yl = Math.min(1, Math.max(0, eps * (dRlost / C.R_baseline_mm)));
+    const dProd = C.P_soy_tonnes * yl;                          // tonnes/yr lost
+    const rev = dProd * price;                                  // total downwind revenue loss /yr
+    const annuity = (1 - Math.pow(1 + disc, -C.horizon_T)) / disc;
+    const perHa = rev * annuity / C.A_source_ha;                // 30-yr NPV $/ha (area-invariant)
+    const ukLoss = rev * C.s_uk;                                // UK-attributable annual loss
+    return [perHa, ukLoss];
   }
 
   // ---- RNG helpers ----
@@ -58,7 +56,7 @@
       const eps = Math.max(0.01, gauss(pr.epsilon_yield.mean, pr.epsilon_yield.sd));
       const price = Math.max(1, gauss(pr.price_soy_usd_t.mean, pr.price_soy_usd_t.sd));
       const disc = (discFixed != null) ? discFixed : (pr.discount_r.lo + rnd() * (pr.discount_r.hi - pr.discount_r.lo));
-      const o = forward([w, f, eps, price, disc]);
+      const o = forwardModel([w, f, eps, price, disc]);
       perha[i] = o[0]; uk[i] = o[1];
     }
     const ph = Array.from(perha).sort((a, b) => a - b);
@@ -97,5 +95,5 @@
 
   function perState(scenario) { return EMU.overlay.scenarios[scenario] || []; }
 
-  window.FLUVION_EMU = { forward, query, perState, areaFraction, data: EMU };
+  window.FLUVION_EMU = { forwardModel, query, perState, areaFraction, data: EMU };
 })();

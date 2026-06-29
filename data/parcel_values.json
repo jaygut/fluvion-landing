@@ -9,28 +9,28 @@
   "perha_p95": 1017.3345545430356,
   "parcels": [
     {
-      "name": "Ouro Verde",
-      "area_ha": 105869,
+      "name": "Source parcel A",
+      "area_ha": 108181,
       "perha_low": 167.46622135090507,
       "perha_central": 350.4166516534236,
       "perha_high": 531.5287013245235,
-      "total_central_usd": 37098260.493896306
+      "total_central_usd": 37908423.79251902
     },
     {
-      "name": "Seringal Cuata",
-      "area_ha": 116700,
+      "name": "Source parcel B",
+      "area_ha": 108181,
       "perha_low": 167.46622135090507,
       "perha_central": 350.4166516534236,
       "perha_high": 531.5287013245235,
-      "total_central_usd": 40893623.24795454
+      "total_central_usd": 37908423.79251902
     },
     {
-      "name": "Terra Nova",
-      "area_ha": 101973,
+      "name": "Source parcel C",
+      "area_ha": 108180,
       "perha_low": 167.46622135090507,
       "perha_central": 350.4166516534236,
       "perha_high": 531.5287013245235,
-      "total_central_usd": 35733037.219054565
+      "total_central_usd": 37908073.37586737
     }
   ],
   "land_price_ref_usd_ha": 295,

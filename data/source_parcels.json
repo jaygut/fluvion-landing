@@ -1,17 +1,19 @@
 {
   "total_ha": 324542,
+  "n_parcels": 3,
+  "region": "western Amazonas",
   "parcels": [
     {
-      "name": "Ouro Verde",
-      "area_ha": 105869
+      "name": "Source parcel A",
+      "area_ha": 108181
     },
     {
-      "name": "Seringal Cuata",
-      "area_ha": 116700
+      "name": "Source parcel B",
+      "area_ha": 108181
     },
     {
-      "name": "Terra Nova",
-      "area_ha": 101973
+      "name": "Source parcel C",
+      "area_ha": 108180
     }
   ],
   "source_box": {
@@ -20,5 +22,5 @@
     "lon_min": -72.5,
     "lon_max": -62.0
   },
-  "_note": "Real names + areas (A_source = 324,542 ha). Geometry shown as the source bounding box; parcel polygons pending (provided privately)."
+  "_note": "Three source parcels, 324,542 ha total, in western Amazonas. Parcel identities and exact per-parcel areas are held privately (shown here as three nominal equal parcels); geometry shown as the source bounding box."
 }
