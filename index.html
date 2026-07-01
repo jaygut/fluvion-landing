@@ -28,6 +28,7 @@
 <script src="vendor/scrollama.min.js"></script>
 <script src="vendor/p5.min.js"></script>
 <script src="data/bundle.js"></script>
+<script src="data/cro_public.js"></script>
 </head>
 <body>
 <div id="deckwrap"></div>
@@ -75,9 +76,10 @@
 
   <section class="step center active" data-scene="0">
     <div class="card">
-      <div class="eyebrow">Flying rivers</div>
+      <div class="eyebrow">Teleconnected Water Value-at-Risk</div>
       <h1 class="hero-title">Flying <span class="a">Rivers</span></h1>
-      <p class="body">A forest in the Amazon breathes water into the sky. Weeks later it falls as rain on farms two thousand kilometres south. We follow that water back to its source, and put a price on the risk.</p>
+      <p class="body">The soy behind a UK portfolio depends on rain made two thousand kilometres upwind, by a forest no risk model prices. We follow that water back to its source, put a price on the dependency, and grade the source.</p>
+      <p class="hero-proof">1 corridor &middot; 324,542 ha &middot; backtested across 22 harvest-years (IBGE) &middot; every figure sourced</p>
     </div>
   </section>
 
@@ -85,7 +87,7 @@
     <div class="card">
       <div class="eyebrow">The blind spot</div>
       <h2 class="head">Half of Britain's nature risk starts abroad, and some of it blows in.</h2>
-      <p class="body">The Green Finance Institute puts <span class="red">up to 12 percent of UK GDP</span> at risk from nature loss, and roughly half of it starts overseas. Part of it rides the wind, as moisture one forest releases and another region drinks in. We could find no risk tool that follows that water back to its source, and none that grades the source it depends on: whether the forest making the rain is intact and steady, or thinning and volatile.</p>
+      <p class="body">The Green Finance Institute puts <span class="red">up to 12 percent of UK GDP</span> at risk from nature loss, and roughly half of it starts overseas. Part of it rides the wind, as moisture one forest releases and another region drinks in. Nature-risk platforms like GIST Impact and NatureAlpha price that exposure where a company's assets sit, mapping millions of locations against biodiversity and ecosystem data. That layer is real and useful. We find no tool that follows the rain the other way, upwind, to price the specific forest that makes it. The science is there, from precipitationsheds to Baker and colleagues' 2026 finding that Amazon rainfall is worth around twenty billion dollars a year, but no one has turned it into a number a risk desk can act on. That is the gap Fluvion fills, for the institutions holding South American soy exposure.</p>
     </div>
   </section>
 
@@ -101,7 +103,7 @@
     <div class="card">
       <div class="eyebrow">The flying river</div>
       <h2 class="head">About a fifth of the La Plata basin's rain comes from the Amazon.</h2>
-      <p class="body">We took it from the moisture-tracking record, the kind of petabyte-scale atmospheric reanalysis and moisture-transport modelling that runs on supercomputers, not spreadsheets, and reconciled it to the physics for this corridor. The Amazon hands the La Plata basin <span class="hl">21.5 percent</span> of its rainfall, right inside the range the published science expects. This is a supply line into one of the world's great breadbaskets.</p>
+      <p class="body">We take the moisture flow from the published RECON reanalysis cube and reconcile it to ERA5 for this corridor; running our own moisture-tracking ensemble with WAM2layers is the next milestone, not a claim we make today. The Amazon hands the La Plata basin <span class="hl">21.5 percent</span> of its rainfall, inside the 12 to 35 percent that Zemp and colleagues published in 2014. This is a supply line into one of the world's great breadbaskets.</p>
     </div>
   </section>
 
@@ -109,7 +111,7 @@
     <div class="card">
       <div class="eyebrow">The proof</div>
       <h2 class="head">In 2022 the rivers ran thin, and the map turned red where it should.</h2>
-      <p class="body">The La Niña drought of 2021 and 2022 cut Rio Grande do Sul's soy by <span class="red">more than half</span> while the cerrado held steady. Our engine reproduces that split, which states fall and which hold. It also clears the bar on 2024, a year we held out a priori, before any scoring. This is a backtest, not a forecast.</p>
+      <p class="body">The La Niña drought of 2021 and 2022 cut Rio Grande do Sul's soy by <span class="red">more than half</span> while the cerrado held steady. Our engine reproduces that split, which states fall and which hold, and repeats it on 2024, a year we held out a priori. The skill is real but modest: it recovers the sign and rank of which regions fall, not the exact loss, across a handful of drought-event-years. The numbers, held-out and pooled, are on the risk object below. This is a backtest, not a forecast.</p>
     </div>
   </section>
 
@@ -118,10 +120,7 @@
       <div class="eyebrow">The prize</div>
       <h2 class="head">As a rain machine, this forest is worth $350 a hectare.</h2>
       <p class="body">That is the value of the harvests it quietly protects downstream, counted over thirty years. It already beats the $295 a hectare the land itself sells for, the regional average from Brazil's land registry. And it counts only water, only soy, only one place the rain lands. The full number is larger.</p>
-      <div class="stats">
-        <div class="stat"><div class="v" id="s-perha">$350</div><div class="l">per hectare, central case ($167 to $532 across scenarios)</div></div>
-        <div class="stat"><div class="v" id="s-var">$1.42M</div><div class="l">the yearly UK loss at risk on this corridor (central case)</div></div>
-      </div>
+      <div class="cro" id="cro"></div>
     </div>
   </section>
 
@@ -137,7 +136,7 @@
     <div class="card">
       <div class="eyebrow">Where this goes</div>
       <h2 class="head">A price today. A live signal next.</h2>
-      <p class="body">We already watch that grade. From open satellite records we track the source forest's condition and read it as it changes, and the trend is not flat: the western Amazon has lost resilience for two decades, and the 2023 and 2024 droughts drove its evaporation sharply below normal. That sits beside the price, never inside it, until the link to the harvest is earned. Further out, a research path tests whether we can warn a season ahead, where the El Niño cycle is documented to lend the growing season some seasonal skill, and we will publish that skill before we ever call it a forecast.</p>
+      <p class="body">Today the engine prices one corridor: a moisture attribution we hold at medium-high confidence, and a drought backtest that reproduces the pattern. Next, we run our own WAM2layers moisture ensemble, fold in real trade-flow exposure to firm the UK number, and add a second corridor, each on the same published, auditable science. We already watch the source: the western Amazon has lost resilience for two decades, and the 2023 and 2024 droughts drove its evaporation sharply below normal. That sits beside the price, never inside it, until the link to the harvest is earned. A season-ahead warning is a research path, not a claim: Gate F is not run, and we publish the skill before we ever call anything a forecast.</p>
     </div>
   </section>
 
@@ -145,7 +144,7 @@
     <div class="card">
       <div class="eyebrow">The ask</div>
       <h2 class="head">One corridor, validated. Two ways to back it.</h2>
-      <p class="body">One open core and one commercial layer, built by one team as a single venture. The open engine is the auditable standard underneath; the commercial layer prices it and serves it, to an investment desk or an AI agent, by API. The same engine reads two ways: it prices the dependency for the desks that carry the downside, and it grades the source for the capital that protects it. The science is built, validated, and checked line by line for one corridor. Scaling it to the world's flying rivers is a compute problem: dozens of corridors, each its own supercomputing run and validation campaign, which is what backing this builds. The next move is yours.</p>
+      <p class="body">One open core and one commercial layer, built by one team as a single venture. The open engine is the auditable standard underneath; the commercial layer prices it and serves it, to an investment desk or an AI agent, by API. The same engine reads two ways: it prices the dependency for the desks that carry the downside, and it grades the source for the capital that protects it. What we stand behind is the corridor's moisture link and its historical drought response; what we flag as scenario is the forward loss under deforestation and the source grade. Each corridor is a provenance-bound risk object like the one above, and the same integration and backtest extend it corridor by corridor: the first is done, the next are a repeatable campaign. The next move is yours.</p>
       <ul class="pack-proof">
         <li><b>Validated.</b> Reproduces the 2022 drought split, clears a held-out 2024 test at r = 0.45, across 22 years of harvests.</li>
         <li><b>Sourced.</b> Every number carries its source and confidence, from RECON moisture physics to peer-reviewed crop response.</li>
@@ -156,7 +155,7 @@
       </div>
       <p class="contactline" style="margin-top:18px"><a href="mailto:jg@graphoflife.com">jg@graphoflife.com</a> <span class="sep">·</span> <a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a></p>
       <p class="footnote">Built entirely from open public data and real computation. Every figure is indicative, not prudential grade. The full evidence pack, ledger and live model included, is shared on request. <span class="defer">Phase 1B</span></p>
-      <p class="builtby" style="margin:22px auto 0;text-align:left">Built by <strong>Jay Gutierrez, PhD</strong>, working at the intersection of ecological network science, graph intelligence, nature-finance translation, and publishing the work that defines the structural-risk category.</p>
+      <p class="builtby" style="margin:22px auto 0;text-align:left">Built by <strong>Jay Gutierrez, PhD</strong>, working at the intersection of ecological network science, graph intelligence, and nature-finance translation, and building the open engine behind Fluvion.</p>
     </div>
   </section>
 
@@ -169,6 +168,7 @@
   <span class="snap">Fluvion · <a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a> · snapshot 2026-06-29</span>
 </footer>
 <script src="js/cinematic_v2.js"></script>
+<script src="js/cro.js"></script>
 <script src="js/atmosphere.js"></script>
 </body>
 </html>

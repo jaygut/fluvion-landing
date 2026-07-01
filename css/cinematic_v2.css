@@ -121,3 +121,54 @@ h2.head{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.6vw,
 .pack-proof li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.5;color:var(--muted)}
 .pack-proof li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--green)}
 .pack-proof b{color:var(--text);font-weight:600}
+
+/* scene-5 Corridor Risk Object tear-sheet (read-only; data/cro_public.js = scrubbed outputs) */
+.step[data-scene="5"] .card{max-width:720px}
+.cro{margin-top:20px;background:linear-gradient(180deg,rgba(9,26,40,.92),rgba(6,18,28,.9));
+  border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;backdrop-filter:blur(10px);
+  box-shadow:0 20px 55px rgba(2,8,14,.5);font-family:var(--sans);text-align:left}
+.cro-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.cro-title{font-family:var(--display);font-weight:700;font-size:14px;color:var(--text);letter-spacing:-.01em}
+.cro-id{display:block;font-family:var(--mono);font-weight:400;font-size:11px;color:var(--teal-bright);letter-spacing:.02em;margin-top:2px}
+.cro-badges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.cro-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--green);
+  background:rgba(58,214,163,.1);border:1px solid rgba(58,214,163,.25);border-radius:999px;padding:2px 7px}
+.cro-meta{font-family:var(--mono);font-size:10px;color:var(--muted);margin:6px 0 12px}
+.cro-hero-num{display:flex;align-items:baseline;gap:4px}
+.cro-hero-num b{font-family:var(--mono);font-size:2.7rem;font-weight:600;color:var(--green);line-height:1;font-variant-numeric:tabular-nums;transition:color .2s}
+.cro-unit{font-family:var(--mono);font-size:1rem;color:var(--muted)}
+.cro-hero-cap{font-size:13px;color:#cdd9dd;margin-top:4px}
+.cro-hero-sub{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+.cro-bar{position:relative;height:8px;border-radius:5px;background:rgba(255,255,255,.06);margin:16px 0 7px}
+.cro-fill{position:absolute;inset:0;border-radius:5px;background:linear-gradient(90deg,rgba(26,168,155,.25),rgba(58,214,163,.5))}
+.cro-tick{position:absolute;top:50%;width:2px;height:16px;transform:translate(-50%,-50%);border-radius:2px}
+.cro-tick--land{background:var(--muted)}
+.cro-tick--land::after{content:"land";position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8px;color:var(--muted)}
+.cro-tick--mid{background:var(--text);width:3px;height:20px;box-shadow:0 0 8px rgba(58,214,163,.85);transition:left .3s ease}
+.cro-bar-leg{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.cro-bar-leg b{color:var(--green)}
+.cro-land{color:#9fb2c0}
+.cro-scn{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:13px 0}
+.cro-scn-lab{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.cro-btn{font-family:var(--mono);font-size:11px;color:#bccad0;background:rgba(255,255,255,.05);
+  border:1px solid var(--hairline);border-radius:7px;padding:4px 11px;cursor:pointer;transition:all .18s}
+.cro-btn:hover{border-color:var(--teal)}
+.cro-btn.on{background:var(--green);color:#052017;font-weight:700;border-color:var(--green)}
+.cro-scn-note{font-family:var(--mono);font-size:9.5px;color:var(--faint);margin-left:auto}
+.cro-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:6px 0 12px}
+.cro-cell{background:rgba(255,255,255,.03);border:1px solid var(--hairline);border-radius:9px;padding:9px 11px}
+.cro-cell--muted{opacity:.85}
+.cro-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.cro-val{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--text);margin:2px 0 3px;font-variant-numeric:tabular-nums}
+.cro-val span{font-size:10px;font-weight:400;color:var(--muted);margin-left:5px;text-transform:none;letter-spacing:0}
+.cro-flag{color:var(--coral)!important;border:1px solid rgba(232,105,77,.4);border-radius:5px;padding:0 5px;font-size:8.5px!important;margin-left:6px}
+.cro-cap2{font-size:10px;line-height:1.4;color:#8fa3ad}
+.cro-prov{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.cro-prov-lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.cro-chip{font-family:var(--mono);font-size:9.5px;color:#9fb2c0;background:rgba(255,255,255,.04);
+  border:1px solid var(--hairline);border-radius:999px;padding:2px 8px;cursor:help}
+.cro-foot{font-family:var(--mono);font-size:9.5px;line-height:1.5;color:var(--faint);border-top:1px solid var(--hairline);padding-top:9px}
+@media(max-width:640px){.cro-grid{grid-template-columns:1fr}.cro-hero-num b{font-size:2.2rem}}
+
+/* hero proof-strip (scene 0): a mono receipts line under the body */
+.hero-proof{font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--muted);margin:16px auto 0;padding-top:12px;border-top:1px solid var(--hairline);max-width:52ch}
