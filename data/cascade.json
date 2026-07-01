@@ -31,7 +31,10 @@
       "value": 0.581,
       "unit": "$M/yr UK-attributable loss",
       "detail": "dProd 25.2 kt x $461.5/t x s_uk=0.05",
-      "confidence": "high"
+      "confidence": "high",
+      "confidence_basis": "translation mechanics (transparent published coefficients)",
+      "exposure_share_confidence": "low",
+      "caveat": "Translation MECHANICS are high-confidence; the s_uk exposure share is a LOW-confidence placeholder (params.S_UK; Trase/Comtrade/FAOSTAT pending) that gates the UK-attributable VaR ONLY, never the headline USD/ha (which uses total downwind loss, independent of s_uk)."
     },
     {
       "stage": "S5",

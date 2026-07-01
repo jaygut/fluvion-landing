@@ -1,0 +1,107 @@
+{
+  "schema": "fluvion.gate_f/1",
+  "status": "NOT_RUN",
+  "forecast_claim_allowed": false,
+  "reason": "Gate F not run: no lead-time forecast experiment has been executed or validated.",
+  "first_experiment": "2021/22 + 2023/24 retrospective seasonal rainfall/yield at 1-3 month lead, southern Brazil / lower La Plata; score ALL available events per-event with a year-block interval (never read skill off the single most predictable La Nina).",
+  "contract": {
+    "gate": "F-forecast",
+    "forecast_init_date_needed": true,
+    "lead_time_months": [
+      1,
+      3
+    ],
+    "leakage_exclusions": [
+      "no target-season rainfall, yield, price, or outcome data in the predictors",
+      "leave-one-season-out; treat 2015/16 as ONE compound event",
+      "init date and information set logged for every issued forecast"
+    ],
+    "baselines": [
+      {
+        "name": "climatology",
+        "role": "skill-score reference; the floor to beat"
+      },
+      {
+        "name": "persistence",
+        "role": "last season carried forward"
+      },
+      {
+        "name": "concurrent_structural_engine",
+        "role": "the static engine fed concurrent perfect-foresight rainfall; isolates the value the LEAD TIME adds over simply knowing the rain"
+      }
+    ],
+    "target_types": [
+      "continuous_rainfall_anomaly",
+      "continuous_yield_anomaly",
+      "binary_drought_or_loss_exceedance"
+    ],
+    "metrics": [
+      {
+        "metric": "anomaly_correlation",
+        "target": "continuous",
+        "reference": null
+      },
+      {
+        "metric": "RMSE",
+        "target": "continuous",
+        "reference": null
+      },
+      {
+        "metric": "MAE",
+        "target": "continuous",
+        "reference": null
+      },
+      {
+        "metric": "CRPS",
+        "target": "continuous",
+        "reference": null
+      },
+      {
+        "metric": "CRPSS",
+        "target": "continuous",
+        "reference": "climatology AND persistence"
+      },
+      {
+        "metric": "Brier",
+        "target": "binary",
+        "reference": null
+      },
+      {
+        "metric": "BSS",
+        "target": "binary",
+        "reference": "climatology"
+      },
+      {
+        "metric": "ROC_AUC",
+        "target": "binary",
+        "reference": "concurrent_structural_engine"
+      },
+      {
+        "metric": "reliability_diagram",
+        "target": "binary",
+        "reference": null
+      }
+    ],
+    "uncertainty": {
+      "method": "year/event-block bootstrap (NOT pooled state-years)",
+      "effective_n_events": 5,
+      "events": [
+        "2005",
+        "2010",
+        "2015/16",
+        "2021/22",
+        "2023/24"
+      ],
+      "honesty": "five events can DEMONSTRATE skill but cannot CERTIFY calibrated performance; report per-event scores and a year-block interval over ~5 events for EVERY metric; never a calibrated-coverage claim off the small event set."
+    },
+    "pass_criteria": [
+      "leakage guard green (no season-Y data in the fit/predictor for season Y)",
+      "beats persistence AND climatology AND the concurrent structural engine",
+      "anomaly correlation up AND CRPSS > 0 AND BSS > 0, drought-detection ROC-AUC above the concurrent engine",
+      "every metric carries a year-block bootstrap interval over ~5 events with a non-negative lower bound",
+      "verdict logged via the provenance ledger with the string 'skill demonstrated on about five events, not operational or calibrated'"
+    ],
+    "halt_rule": "HALT if any criterion fails. A failing gate is an honest go/no-go on TIMING, never a number to massage by widening intervals, dropping events, or pooling state-years."
+  },
+  "_note": "Honest scaffold, not a forecast model. Fetches no seasonal-forecast data and emits no forecast-conditioned loss number. A forecast claim is impossible until this gate PASSES."
+}

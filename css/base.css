@@ -1,18 +1,18 @@
 /* base.css - shared design tokens + shared components (tooltip, chips, table, gates) */
 :root{
-  --moisture:#00d4aa; --water:#4fc3f7; --risk:#ff8a65; --risk-deep:#d84315;
-  --prov:#b39ddb; --success:#66bb6a; --warn:#ffa726; --danger:#ef5350; --firewall:#78909c;
-  --bg-dark:#0a0e1a; --bg-dark-alt:#111627; --text-light:#e8eaf6; --text-dim:#7986cb;
-  --bg-light:#fafafa; --bg-light-alt:#f0f2f5; --text-dark:#1a1a2e; --text-dim2:#5c6370;
-  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --mono:'JetBrains Mono','SF Mono',monospace;
+  --moisture:#0e7a70; --water:#1aa89b; --risk:#e8694d; --risk-deep:#c2442a;
+  --prov:#a78bfa; --success:#0f8059; --warn:#a86410; --danger:#c2442a; --firewall:#5c6e78;
+  --bg-dark:#06141f; --bg-dark-alt:#081b29; --text-light:#eaf2f2; --text-dim:#8fa3ad;
+  --bg-light:#f7f6f2; --bg-light-alt:#eaf1f1; --text-dark:#243b4a; --text-dim2:#5c6e78;
+  --font:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'IBM Plex Mono','SF Mono','JetBrains Mono',Consolas,monospace;
 }
 *{box-sizing:border-box}
 .fv-tooltip{position:fixed;pointer-events:none;opacity:0;z-index:9999;background:rgba(10,14,26,.95);
   color:#e8eaf6;padding:7px 10px;border-radius:6px;font:12px/1.4 var(--font);max-width:260px;
   box-shadow:0 4px 18px rgba(0,0,0,.4);transition:opacity .12s;border:1px solid rgba(255,255,255,.1)}
 .conf{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600;color:#fff}
-.conf-high{background:var(--success)} .conf-medium-high{background:#7cb342} .conf-medium{background:var(--warn)} .conf-low{background:var(--danger)}
+.conf-high{background:var(--success)} .conf-medium-high{background:#2f9e6f} .conf-medium{background:var(--warn)} .conf-low{background:var(--danger)}
 /* provenance table */
 .prov-ctrl{margin:10px 0;font-size:13px;color:#555}
 .prov-btn{margin-left:6px;padding:3px 12px;border:1px solid #ccc;background:#fff;border-radius:14px;cursor:pointer;font-size:12px}

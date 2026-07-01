@@ -16,9 +16,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fluvion · A forest makes the rain. We priced it.">
 <meta name="twitter:image" content="https://jaygut.github.io/fluvion-landing/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%203C16%203%206%2015%206%2021a10%2010%200%200020%200C26%2015%2016%203%2016%203z'%20fill='%2300d4aa'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2026%2026'%3E%3Ccircle%20cx='6'%20cy='7'%20r='3'%20fill='%231aa89b'/%3E%3Ccircle%20cx='19'%20cy='6'%20r='3'%20fill='%233ad6a3'/%3E%3Ccircle%20cx='9'%20cy='20'%20r='3.4'%20fill='%23e8694d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/report.css">
 <script src="vendor/d3.v7.min.js"></script>
@@ -27,7 +28,15 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <div class="brand">Flu<span>vion</span></div>
+    <a class="brand" href="index_v2.html" aria-label="Fluvion" style="display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text-dark)">
+      <svg viewBox="0 0 26 26" width="24" height="24" aria-hidden="true" style="flex:0 0 auto">
+        <line x1="6" y1="7" x2="19" y2="6" stroke="#0e7a70" stroke-width="1.3" opacity="0.8"/>
+        <line x1="6" y1="7" x2="9" y2="20" stroke="#0e7a70" stroke-width="1.3" opacity="0.8"/>
+        <line x1="19" y1="6" x2="9" y2="20" stroke="#0e7a70" stroke-width="1.3" opacity="0.55"/>
+        <circle cx="6" cy="7" r="3" fill="#0e7a70"/><circle cx="19" cy="6" r="3" fill="#1aa89b"/><circle cx="9" cy="20" r="3.4" fill="#e8694d"/>
+      </svg>
+      <span style="font-size:20px;font-weight:700;color:var(--text-dark)">Flu<span style="color:var(--moisture)">vion</span></span>
+    </a>
     <div class="tagline">The forest that makes the rain, priced.</div>
     <nav id="nav">
       <a href="#s1">1 · The short version</a>
@@ -44,7 +53,7 @@
       <a href="#s-scale">&lowast; The scale</a>
       <a href="#s8">8 · What we do not claim</a>
       <a href="#s9">9 · How to back it</a>
-      <a href="#s-receipts">&#8596; People and machines</a>
+      <a href="#s-receipts">&#8596; Receipts and gates</a>
       <a href="#s10">10 · Every number, traced</a>
     </nav>
     <div class="ver" id="ver"></div>
@@ -225,17 +234,17 @@
       <p>Everything so far has priced the dependency: what the downstream harvest is worth, and what the forest is worth for holding the rain in place. But a forest is not a pipe with a single number. It has a condition, and the condition decides not how much rain it makes, but how reliably it makes it. This is the second half of the thesis: grade the source, price the dependency.</p>
       <p>The science here is narrow, and we keep it narrow on purpose, because the easy version is wrong. A hostile reviewer would dismantle "more biodiversity, more rain" in one question, and they would be right to. What the evidence actually says is about stability, not average. In a process-based simulation, a forest richer in hydraulic traits loses far less biomass under a severe drought, and the authors are explicit that mean transpiration does not rise with diversity: the gain is a fall in the standard deviation of the water flux (Langan et al. 2025, Nature Communications 16:8246). Drier, degraded forests are measurably less diverse and slower to respond, with less of the redundancy that buffers function after a shock (Aguirre-Gutierrez et al. 2022, Nature Ecology and Evolution 6:878), and degraded patches lose evaporation stability under exactly the hot, dry extremes that matter while intact high-biomass patches hold (Longo et al. 2025, ERL 20(5)). So an intact, diverse forest is a steadier supplier of the rain its downwind assets depend on. A degraded one delivers the same average in a calm year and falls short when it is hit.</p>
       <div class="callout">The one line a sharp reviewer will test, so we state it first: biodiversity and intactness <strong>stabilize</strong> the water service, lowering its variance and its drought-tail. They <strong>do not raise its mean</strong>. We never say more biodiversity makes more rain, and the grade never lifts the $350.</div>
-      <p>That null on the average is what lets the grade map cleanly onto a risk number instead of fudging it. A Water-VaR is a statement about a loss distribution, a middle and a spread. The forest's share of the rain, <code>w_soybelt</code>, sets the middle, and that is where the $350 lives, unchanged. Source condition sets the spread and, because resilience is drifting, the direction of travel:</p>
+      <p>That null on the average is what lets the grade map cleanly onto a risk number instead of fudging it. A teleconnected Water Value-at-Risk is a statement about a loss distribution, a middle and a spread. The forest's share of the rain, <code>w_soybelt</code>, sets the middle, and that is where the $350 lives, unchanged. Source condition sets the spread and, because resilience is drifting, the direction of travel:</p>
       <div class="grade-compare">
         <div class="gbox intact">
           <h4>Intact, diverse, redundant source</h4>
           <p>Holds its evaporation through drought. A smaller drought-year shortfall, a thinner downside. Resilience flat or recovering.</p>
-          <p class="verdict good">A steadier, thinner-tailed supply. The same average service, a narrower loss distribution. A lower-Water-VaR source to depend on.</p>
+          <p class="verdict good">A steadier, thinner-tailed supply. The same average service, a narrower loss distribution. A lower Water Value-at-Risk source to depend on.</p>
         </div>
         <div class="gbox degraded">
           <h4>Degraded, thinning, resilience-losing source</h4>
           <p>Loses evaporation when it is hit. A larger drought-year shortfall, a fatter downside. Resilience trending down, and self-amplifying.</p>
-          <p class="verdict bad">The same average today, a worse downside and a worse trajectory. A higher-Water-VaR, declining-quality water asset.</p>
+          <p class="verdict bad">The same average today, a worse downside and a worse trajectory. A higher Water Value-at-Risk, declining-quality water asset.</p>
         </div>
       </div>
       <div class="callout warn"><b>What this is, and what it is not.</b> This is not a multiplier we bolt onto the price. There is no source-grade term in the $350, in the VaR, or in <code>w_soybelt</code> today, and the central $350 will never carry a grade multiplier. Source condition enters in two honest places only: a descriptive monitor that shows the source's observed condition beside the price (the next section), and a research coupling, a link from source condition to downwind-rainfall variance, that no published study has yet estimated. We state it as mechanism-supported and to be validated, never as demonstrated.</div>
@@ -266,8 +275,8 @@
         <div class="tier t3">
           <div class="tier-rail"><span class="tier-num">Tier 3</span><span class="tier-badge research">research</span></div>
           <div>
-            <h4>The skill-validated early warning</h4>
-            <p>A season-ahead signal, built on the genuine seasonal-forecast skill the El Niño cycle gives southern Brazil and the lower La Plata in the growing season. We reserve the words forecast and early warning for this tier, and only behind a published test that beats the simple baselines at a stated lead time.</p>
+            <h4>The skill-gated early warning (Gate F, not yet run)</h4>
+            <p>A season-ahead signal that would draw on the seasonal predictability the El Niño cycle is documented to give southern Brazil and the lower La Plata in the growing season, a predictability we have not yet demonstrated or earned for this corridor. We reserve the words forecast and early warning for this tier, and only behind a published test (Gate F) that beats the simple baselines at a stated lead time. Today that gate is not run, so no forecast claim is made.</p>
             <div class="gate"><b>Gate:</b> a pre-registered hindcast over the historical drought years. The honest catch we will state plainly: the seasonal skill is strongest in southern Brazil, while the UK's largest soy exposure sits in Argentina, where it is weakest.</div>
           </div>
         </div>
@@ -347,12 +356,12 @@
         <div class="ask-card">
           <h4>Track A · The open foundation</h4>
           <p class="ask-amount">Open core · $1.5M</p>
-          <p>We run the open engine as a company, not a research project. This builds the open, auditable risk standard and the compute-and-data pipeline behind it: the moisture-tracking runs, one signed computation per corridor, its full provenance graph, the next corridors, and the forecast-skill validation that earns the forward layer, all on an open endpoint anyone can read and re-check. The open core is the moat and the distribution at once. It is what makes the priced layer on top worth trusting, and it ships as product from day one.</p>
+          <p>We run the open engine as a company, not a research project. This builds the open, auditable risk standard and the compute-and-data pipeline behind it: the moisture-tracking runs, one signed computation per corridor, its full provenance graph, the next corridors, and the lead-time-skill validation (Gate F) that would earn the forward layer, all on an open endpoint anyone can read and re-check. The open core is the moat and the distribution at once. It is what makes the priced layer on top worth trusting, and it ships as product from day one.</p>
         </div>
         <div class="ask-card">
           <h4>Track B · The commercial instrument</h4>
           <p class="ask-amount">Commercial layer · $3M seed</p>
-          <p>For <b>investment firms, hedge funds, regenerative banks, and reinsurers</b>: per-hectare avoided-loss values and portfolio VaR price the upwind supply-chain exposure that asset-coordinate tools miss. It is delivered as a metered API and an MCP endpoint, so a portfolio system or an AI agent can pull a corridor's value, its provenance, and its confidence and act on it directly. The forest-condition monitor adds a recurring signal, and the early-warning layer follows once its skill is published. Decision-useful, sold on demand for awareness, not on a regulatory mandate.</p>
+          <p>For <b>investment firms, hedge funds, regenerative banks, and reinsurers</b>: per-hectare avoided-loss values and portfolio VaR price the upwind supply-chain exposure that asset-coordinate tools miss. It is delivered as a metered API and an MCP endpoint, so a portfolio system or an AI agent can pull a corridor's value, its provenance, and its confidence and act on it directly. The forest-condition monitor adds a recurring signal, and the early-warning layer follows only after its skill is published (Gate F, not yet run). Decision-useful, sold on demand for awareness, not on a regulatory mandate.</p>
         </div>
       </div>
       <div class="figure" id="fig-gates">
@@ -365,20 +374,22 @@
 
     <!-- receipts / agentic -->
     <section id="s-receipts">
-      <h2><span class="num">&#8596;</span>Built for people and machines</h2>
-      <p>Most analytics give you a number. Fluvion gives you a number with its receipt. Each valuation is computed once, from open peer-reviewed science and named datasets, then published in two forms from that single source. For people, it becomes the investor report you are reading, a one-page corridor tear sheet for the investment committee, and a live calculator to flex scenarios. For software, the identical figures become a structured, signed risk object that other systems and AI agents can query over an API or an MCP endpoint, and verify directly. Every figure travels with its provenance and its confidence, so a person can read it and an automated system can act on it or audit it, without anyone re-deriving the science. Nothing in the two views can drift apart, because both render the same signed result.</p>
+      <h2><span class="num">&#8596;</span>Receipts for people and machines</h2>
+      <p>Most analytics give you a number. Fluvion gives you a number with its receipt. The corridor is computed once, from open peer-reviewed science and named datasets, then serialized into the report, the calculator, and a machine-readable Corridor Risk Object. A person sees the value, the risk, the gates, and the caveats. A consuming agent sees the same values, the same provenance rows, the same claim permissions, and the same sha256 content-hash signature. If a gate is missing or fails, the object marks itself incomplete and suppresses the claims that depend on it.</p>
+      <p>This is the product discipline: honesty is not a footnote, it is part of the interface. The object says scenario simulation is live, the concurrent hindcast is live for sign and rank, the source-condition monitor is descriptive and firewalled from price, and true lead-time claims are blocked until Gate F is run. It also carries the baseline receipt: the model beats the zero-skill null and persistence, but only edges past climatology in MSE. That is exactly the story we are willing to defend: useful pattern skill, not exact drought magnitude and not a forecast.</p>
       <table class="dual-table">
         <thead><tr><th>For people</th><th>For machines</th></tr></thead>
         <tbody>
-          <tr><td>The report, the one-page tear sheet, the live calculator</td><td>A signed risk object and a direct feed that other software and AI agents can query</td></tr>
-          <tr><td>Read it, present it, decide</td><td>Consume it, recheck it, plug it into a portfolio view</td></tr>
+          <tr><td>The report, the one-page tear sheet, the live calculator</td><td>The same signed Corridor Risk Object, claim registry, Gate F status, and baseline receipt</td></tr>
+          <tr><td>Read it, present it, decide with the caveats visible</td><td>Consume it, recheck it, self-gate the claims, and plug it into a portfolio view</td></tr>
         </tbody>
       </table>
-      <p class="dual-foot">Both are the same verified computation, shown two ways.</p>
+      <p class="dual-foot">Both are the same verified computation, shown two ways. The browser projects the JSON bundle. It does not recompute the model.</p>
       <div class="figure" id="fig-cro">
-        <h3>The Corridor Risk Object, shown both ways</h3>
-        <p class="cap">The same verified result, for a person and for a machine. On the right is an illustrative shape of the structured object an agent pulls, over an API or an MCP endpoint: the value, the risk, the condition cross-check and its honest verdict, the provenance, and a claim gate that tells the consumer what it may and may not do. The gate is fixed: display only, never a price input, never a forecast. This is a client-side illustration of the shape, not a live endpoint.</p>
+        <h3>Figure 13b &middot; The Corridor Risk Object and its claim gate</h3>
+        <p class="cap">The live object in the bundle, not a mockup. It carries the $350/ha NPV with P5-P95, the epistemic VaR/ES basis, the like-for-like land and Baker checks, the gate ladder, the sha256 signature, the claim permissions, Gate F set to NOT_RUN, and the baseline comparison. The baseline result is intentionally modest: sign/rank skill is real, magnitude skill remains limited.</p>
         <div class="canvas"></div>
+        <div class="prov"><span class="src">viz/data/corridor_risk_object.json · claim_registry.json · gate_f.json · baseline_comparison.json</span><span class="conf conf-high">projected, not recomputed</span></div>
       </div>
       <div class="callout">In a market where software now reads data faster than people do, the value is not the number, it is the verifiable trail attached to it. Fluvion ships decisions with receipts: every figure traces to its source, carries its confidence, and stays honest about what is proven and what is not. Indicative, not prudential grade; the $350 a hectare is a 30-year lower bound.</div>
     </section>
@@ -396,8 +407,20 @@
     </section>
   </main>
 </div>
-<footer>
-  Fluvion is an open engine that prices the rain one forest sends to another. Every figure is computed from real data, nothing is invented. The numbers are indicative, not prudential grade. Generated <span id="gen"></span>.
+<footer class="report-footer">
+  <div class="rf-brand">
+    <svg viewBox="0 0 26 26" width="20" height="20" aria-hidden="true">
+      <line x1="6" y1="7" x2="19" y2="6" stroke="#0e7a70" stroke-width="1.3" opacity="0.8"/>
+      <line x1="6" y1="7" x2="9" y2="20" stroke="#0e7a70" stroke-width="1.3" opacity="0.8"/>
+      <line x1="19" y1="6" x2="9" y2="20" stroke="#0e7a70" stroke-width="1.3" opacity="0.55"/>
+      <circle cx="6" cy="7" r="3" fill="#0e7a70"/><circle cx="19" cy="6" r="3" fill="#1aa89b"/><circle cx="9" cy="20" r="3.4" fill="#e8694d"/>
+    </svg>
+    <span><strong>Fluvion</strong> · teleconnected Water Value-at-Risk engine</span>
+  </div>
+  <p class="rf-line">Fluvion is an open engine that prices the rain one forest sends to another. Every figure is computed from real data, nothing is invented. The numbers are indicative, not prudential grade.</p>
+  <p class="contactline"><a href="mailto:jg@graphoflife.com">jg@graphoflife.com</a> <span class="sep">·</span> <a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a></p>
+  <p class="builtby">Built by <strong>Jay Gutierrez, PhD</strong>, working at the intersection of ecological network science, graph intelligence, nature-finance translation, and publishing the work that defines the structural-risk category.</p>
+  <p class="rf-snap">Generated <span id="gen"></span> · snapshot 2026-06-29</p>
 </footer>
 <script src="js/utils.js"></script>
 <script src="js/figures.js"></script>

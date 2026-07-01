@@ -290,7 +290,7 @@ function parcelValue(sel) {
   svg.append("line").attr("x1", cx).attr("x2", cx).attr("y1", y(p.perha_p5)).attr("y2", y(p.perha_p95)).attr("stroke", "#1a1a2e").attr("stroke-width", 1.5);
   [p.perha_p5, p.perha_p95].forEach((v) => svg.append("line").attr("x1", cx - 6).attr("x2", cx + 6).attr("y1", y(v)).attr("y2", y(v)).attr("stroke", "#1a1a2e").attr("stroke-width", 1.5));
   svg.append("text").attr("x", W / 2).attr("y", H - 8).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "#666")
-    .text(`30-yr NPV avoided-loss $/ha (P5-P95 $${p.perha_p5.toFixed(0)} to ${p.perha_p95.toFixed(0)} on central). Annual-equiv $${p.engine_annual_equiv_usd_ha_yr}/ha/yr, about half the all-crop value implied by Baker et al. 2026`);
+    .text(`30-yr NPV avoided-loss $/ha (P5-P95 $${p.perha_p5.toFixed(0)} to ${p.perha_p95.toFixed(0)} on central). Annual-equiv $${p.engine_annual_equiv_usd_ha_yr}/ha/yr, about half Baker et al. 2026's $${p.baker_annual_usd_ha_yr} +/- ${p.baker_annual_usd_ha_yr_sd}/ha/yr Amazon-forest rainfall-generation value`);
 }
 
 // ---------------------------------------------------------------- //
@@ -840,62 +840,125 @@ function etDroughtFingerprint(sel) {
 }
 
 // ---------------------------------------------------------------- //
-// 20. Corridor Risk Object (CRO) - the machine-readable artifact (Track-A, descriptive)
-//     An illustrative client-side shape of what an agent pulls over MCP/API. Not a live endpoint.
-//     Claim-gate flags are STATIC literals (never derived from the verdict): the monitor is
-//     display-only, never a price input, never a forecast.
+// 20. Corridor Risk Object (CRO) - the machine-readable artifact.
+//     Pure projection of bundle JSON: CRO, claim registry, Gate F, and baseline receipt.
 // ---------------------------------------------------------------- //
 function croPanel(sel) {
-  const cv = _cv();
-  const pv = (D.parcel_values || {}).perha || {};
-  const v95 = ((((D.var_summary || {}).var) || {}).central || {}).VaR95;
-  const meta = D._meta || {};
-  const cro = {
-    corridor: "Amazonas -> La Plata",
-    tier: "Tier 1 valuation (live) + Tier 2 condition monitor (descriptive, beside the price)",
-    asset_value_usd_per_ha: {
-      central: Math.round(pv.central || 350), low: Math.round(pv.low || 167), high: Math.round(pv.high || 532),
-      basis: "30-yr NPV avoided loss; a lower bound (water + one crop + one sink)",
-    },
-    risk: { var95_usd_per_yr: Math.round(v95 || 1416743), basis: "epistemic parameter-uncertainty VaR, not a year-to-year aleatory tail" },
-    condition_monitor: {
-      signal: "source-box dry-season (ASO) evaporation anomaly",
-      cross_validation: cv ? {
-        verdict: cv.verdict,
-        sign_agreement_2023_2024: !!((cv.sign_corroboration || {}).all_negative_2023_2024),
-        correlation_by_rule: (cv.robustness_rules || {}).by_rule,
-        clears_0p50: (cv.robustness_rules || {}).clears_0p50,
-        paradigms: cv.products,
-      } : null,
-      coupled_to_price: false,
-    },
-    claim_gate: {
-      permitted_uses: ["display_descriptive_only"],
-      forbidden_uses: ["price_coupling", "f_loss", "w_soybelt", "A_source_ha", "usd_per_ha", "forecast", "early_warning", "validated_claim"],
-      confidence: "medium",
-      statistic_type: "agreement_count_and_spread",
-      not_a_probability: true,
-    },
-    provenance: {
-      engine_version: meta.engine_version, seed: meta.seed,
-      regenerated_by: cv ? cv.regenerated_by : null,
-      sources: "TerraClimate (CC0), MODIS MYD16A2GF (public domain), ERA5 (CC BY 4.0), IBGE + CHIRPS, RECON",
-    },
-    _note: "Illustrative client-side shape of the Corridor Risk Object an agent would pull (MCP/API). Not a live endpoint.",
+  const cro = D.corridor_risk_object || {};
+  const reg = D.claim_registry || {};
+  const gf = D.gate_f || {};
+  const base = D.baseline_comparison || {};
+  const out = cro.outputs || {};
+  const cross = cro.cross_checks || {};
+  const p = out.asset_per_ha_usd_p5_p50_p95 || [];
+  const scenarios = cro.scenarios || {};
+  const gates = cro.validation_gates || [];
+  const allowed = (reg.claims || []).filter((c) => c.permission === "allowed" || c.permission === "allowed_with_caveat");
+  const forbidden = (reg.claims || []).filter((c) => c.permission === "forbidden" || c.permission === "gated");
+  const sig = (cro.signature || "sha256:missing").replace("sha256:", "");
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+  const money = (v) => v == null ? "n/a" : fmt.usd(v);
+  const moneyShort = (v) => v == null ? "n/a" : fmt.usdc(v);
+  const modeLabel = (s) => esc(String(s || "").replace(/_/g, " "));
+  const margin = (name) => ((base.margins || {})[name]);
+  const statusClass = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const statusText = cro.status && cro.status.complete ? "complete" : "incomplete";
+  const reportLabel = (c) => {
+    const safe = {
+      true_forecast_not_allowed: "Lead-time predictive loss estimate.",
+      early_warning_not_allowed: "Forward alert or signal label.",
+      price_forest_condition_not_allowed: "Pricing forest-condition anomalies into value.",
+      portfolio_ready_exposure_not_allowed: "Portfolio-ready UK exposure.",
+      prudential_grade_not_allowed: "Prudential or regulatory-capital framing.",
+    };
+    return safe[c.id] || c.statement;
   };
-  const json = JSON.stringify(cro, null, 2).replace(/</g, "&lt;");
-  const g = d3.format(",.0f");
-  d3.select(sel).html(
-    '<div style="display:grid;grid-template-columns:1fr 1.25fr;gap:16px;align-items:start">' +
-    '<div style="font-size:13px;line-height:1.55;color:#444"><b>What a person reads</b>' +
-    '<ul style="padding-left:18px;margin:6px 0">' +
-    `<li>Value about USD ${Math.round(pv.central || 350)}/ha (range ${Math.round(pv.low || 167)} to ${Math.round(pv.high || 532)}), a 30-year lower bound.</li>` +
-    `<li>Risk VaR95 about USD ${g(v95 || 1416743)}/yr, epistemic.</li>` +
-    `<li>Condition cross-check: <b>${cv ? cv.verdict.replace(/_/g, " ") : "n/a"}</b> (sign agrees in 2023 and 2024; correlation clears only the mean rule).</li>` +
-    "<li>Gate: descriptive, beside the price, never a forecast.</li></ul></div>" +
-    '<div><b style="font-size:13px;color:#444">What an agent pulls</b>' +
-    `<pre style="background:#0a0e1a;color:#cfe3ff;font-size:10.5px;line-height:1.34;padding:10px 12px;border-radius:8px;overflow:auto;max-height:360px;margin:6px 0">${json}</pre></div></div>`
+
+  const gateRows = gates.map((g) =>
+    `<div class="cro-gate-row cro-status-${statusClass(g.status)}">` +
+      `<span>${esc(g.gate)}</span><b>${esc(g.status)}</b>` +
+    "</div>").join("");
+  const allowRows = allowed.map((c) => `<li><b>${modeLabel(c.mode)}</b>: ${esc(c.statement)}</li>`).join("");
+  const forbidRows = forbidden.map((c) => `<li><b>${modeLabel(c.mode)}</b>: ${esc(reportLabel(c))}</li>`).join("");
+  const metricCards = [
+    ["Value", money(p[1]) + "/ha", `P5-P95 ${money(p[0])} to ${money(p[2])}`],
+    ["Scenario range", `${money((scenarios.low || {}).per_ha_usd_p50)} to ${money((scenarios.high || {}).per_ha_usd_p50)}`, "low to high f_loss stress"],
+    ["Epistemic VaR/ES", `${moneyShort(out.VaR95)} / ${moneyShort(out.ES95)}`, "UK book, s_uk-gated"],
+    ["Signature", sig.slice(0, 16) + "...", statusText + ", sha256 content hash"],
+  ].map((r) => `<div class="cro-metric"><span>${r[0]}</span><b>${r[1]}</b><em>${r[2]}</em></div>`).join("");
+
+  const root = d3.select(sel).html(
+    `<div class="cro-live">
+      <div class="cro-header">
+        <div>
+          <span class="cro-eyebrow">fluvion.cro/1 · ${esc(cro.corridor_name || "corridor")}</span>
+          <h4>One result, two consumers, one receipt.</h4>
+          <p>The report, the calculator, and the agent payload read the same committed JSON. The browser projects the object below. It does not recompute the engine.</p>
+        </div>
+        <div class="cro-chip">Gate F ${esc(gf.status || "UNKNOWN")} · forecast_claim_allowed=${gf.forecast_claim_allowed === true}</div>
+      </div>
+      <div class="cro-metrics">${metricCards}</div>
+      <div class="cro-panels">
+        <div class="cro-card">
+          <h5>Validation gates</h5>
+          <div class="cro-gates">${gateRows}</div>
+          <p class="cro-note">Gate F is intentionally fail-closed: no lead-time claim ships until the test is run and passes.</p>
+        </div>
+        <div class="cro-card">
+          <h5>Machine-readable claim gate</h5>
+          <div class="claim-cols">
+            <div><b>May say</b><ul>${allowRows}</ul></div>
+            <div><b>May not say yet</b><ul>${forbidRows}</ul></div>
+          </div>
+        </div>
+      </div>
+      <div class="cro-panels cro-panels-bottom">
+        <div class="cro-card">
+          <h5>Like-for-like checks</h5>
+          <table class="cro-table"><tbody>
+            <tr><td>NPV value</td><td>${money(p[1])}/ha vs land ${money(cross.land_price_usd_ha)}/ha</td></tr>
+            <tr><td>Annual flow</td><td>${money(cross.engine_annual_equiv_usd_ha_yr)}/ha/yr vs Baker ${money(cross.baker_annual_usd_ha_yr)}/ha/yr</td></tr>
+            <tr><td>Basis</td><td>${esc(cross.like_for_like_note || "NPV vs NPV, annual vs annual")}</td></tr>
+          </tbody></table>
+        </div>
+        <div class="cro-card">
+          <h5>Baseline receipt</h5>
+          <div class="baseline-mini"></div>
+          <p class="cro-note">Pooled n=${esc(base.n || "n/a")}. The model beats persistence clearly, beats climatology only modestly in MSE, and remains a sign/rank engine rather than a magnitude engine.</p>
+        </div>
+      </div>
+    </div>`
   );
+
+  const bars = [
+    ["r over null", margin("pearson_r_over_zero_skill"), C.moisture],
+    ["sign over coin", margin("sign_match_over_coin_flip"), C.water],
+    ["MSE vs climatology", margin("mse_skill_vs_climatology"), C.warn],
+    ["MSE vs persistence", margin("mse_skill_vs_persistence"), C.success],
+  ].filter((d) => d[1] != null && Number.isFinite(+d[1]));
+  const W = 520, H = 150, m = { l: 132, r: 28, t: 14, b: 24 };
+  const svg = root.select(".baseline-mini").append("svg")
+    .attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%").style("height", "auto");
+  if (bars.length) {
+    const x = d3.scaleLinear().domain([0, Math.max(0.5, d3.max(bars, (d) => +d[1]) * 1.1)]).range([m.l, W - m.r]);
+    const y = d3.scaleBand().domain(bars.map((d) => d[0])).range([m.t, H - m.b]).padding(0.32);
+    svg.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", m.t - 4).attr("y2", H - m.b + 4).attr("stroke", "#ccd6d9");
+    bars.forEach((d) => {
+      svg.append("text").attr("x", m.l - 8).attr("y", y(d[0]) + y.bandwidth() / 2 + 4)
+        .attr("text-anchor", "end").attr("font-size", 10.5).attr("fill", "#556").text(d[0]);
+      svg.append("rect").attr("x", x(0)).attr("y", y(d[0])).attr("width", Math.max(1, x(+d[1]) - x(0)))
+        .attr("height", y.bandwidth()).attr("rx", 4).attr("fill", d[2]).attr("opacity", 0.88);
+      svg.append("text").attr("x", x(+d[1]) + 6).attr("y", y(d[0]) + y.bandwidth() / 2 + 4)
+        .attr("font-size", 10.5).attr("font-weight", 700).attr("fill", "#334")
+        .text(d[0].startsWith("MSE") ? d3.format("+.1%")(d[1]) : d3.format("+.3f")(d[1]));
+    });
+    svg.append("text").attr("x", m.l).attr("y", H - 5).attr("font-size", 9.5).attr("fill", "#7a8590")
+      .text("All bars are improvements over stated baselines. Rainfall is concurrent, not a lead-time prediction.");
+  } else {
+    svg.append("text").attr("x", 12).attr("y", 32).attr("font-size", 12).attr("fill", "#b0853a")
+      .text("Baseline comparison missing from the bundle.");
+  }
 }
 
 // 21. Signal-maturity matrix - the honest staging of each condition signal (descriptive)

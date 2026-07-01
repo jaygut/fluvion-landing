@@ -77,7 +77,7 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const smooth = (t) => t * t * (3 - 2 * t);
   function mix3(c1, c2, t) { return [lerp(c1[0], c2[0], t), lerp(c1[1], c2[1], t), lerp(c1[2], c2[2], t)]; }
-  const TEAL = [70, 222, 190], WATER = [96, 196, 247], AMBER = [246, 168, 104], VAPOUR = [150, 255, 222];
+  const TEAL = [58, 214, 163], WATER = [43, 212, 196], AMBER = [232, 105, 77], VAPOUR = [150, 255, 210];
 
   // ---- the FIXED flying-river edges = the deck.gl ArcLayer ground tracks. Each particle
   //      rides one of these (share-weighted), so the interactive flow follows the same fan
@@ -214,7 +214,7 @@
       const r = Math.max(W, H) * (0.34 + 0.12 * a);
       p.push(); p.blendMode(p.BLEND);
       radial(c[0], c[1], r, [
-        [0, `rgba(0,150,128,${0.16 * a})`], [0.45, `rgba(0,120,110,${0.07 * a})`], [1, "rgba(0,0,0,0)"]]);
+        [0, `rgba(26,168,155,${0.16 * a})`], [0.45, `rgba(20,140,128,${0.07 * a})`], [1, "rgba(0,0,0,0)"]]);
       p.pop();
     }
     function sourcePulse(emit, project) {
@@ -222,7 +222,7 @@
       const c = project([SRC.lon, SRC.lat]); if (!c) return;
       const r = (54 + 26 * Math.sin(pulseT * 2.0)) * (0.6 + 0.6 * emit);
       p.push(); p.blendMode(p.ADD);
-      radial(c[0], c[1], r, [[0, "rgba(80,235,200,0.20)"], [0.5, "rgba(40,190,170,0.07)"], [1, "rgba(0,0,0,0)"]]);
+      radial(c[0], c[1], r, [[0, "rgba(90,230,180,0.20)"], [0.5, "rgba(50,190,160,0.07)"], [1, "rgba(0,0,0,0)"]]);
       p.pop();
     }
     function limbGlow() {
@@ -289,9 +289,9 @@
       const ctx = cv.getContext("2d"); const w = cv.width, h = cv.height; const mr = Math.max(0.05, meanRef);
       ctx.clearRect(0, 0, w, h);
       const y1 = sparkY(h, 1); // the held mean (delivery normalised to its own average)
-      ctx.strokeStyle = "rgba(0,212,170,0.55)"; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = "rgba(58,214,163,0.55)"; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
       ctx.beginPath(); ctx.moveTo(0, y1); ctx.lineTo(w, y1); ctx.stroke(); ctx.setLineDash([]);
-      ctx.strokeStyle = "rgba(246,168,104,0.95)"; ctx.lineWidth = 1.6; ctx.beginPath();
+      ctx.strokeStyle = "rgba(232,105,77,0.95)"; ctx.lineWidth = 1.6; ctx.beginPath();
       for (let k = 0; k < RING; k++) {
         const x = (k / (RING - 1)) * w, y = sparkY(h, ring[(rh + k) % RING] / mr);
         k === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
@@ -301,9 +301,9 @@
     function renderStaticHud() { // reduced-motion: a still intact-vs-degraded comparison
       const cv = hud.spark; if (!cv) return;
       const ctx = cv.getContext("2d"); const w = cv.width, h = cv.height; ctx.clearRect(0, 0, w, h);
-      ctx.strokeStyle = "rgba(0,212,170,0.85)"; ctx.lineWidth = 1.6; const y1 = sparkY(h, 1);
+      ctx.strokeStyle = "rgba(58,214,163,0.85)"; ctx.lineWidth = 1.6; const y1 = sparkY(h, 1);
       ctx.beginPath(); ctx.moveTo(0, y1); ctx.lineTo(w, y1); ctx.stroke(); // intact: flat at the mean
-      ctx.strokeStyle = "rgba(246,168,104,0.95)"; ctx.lineWidth = 1.4; ctx.beginPath();
+      ctx.strokeStyle = "rgba(232,105,77,0.95)"; ctx.lineWidth = 1.4; ctx.beginPath();
       for (let k = 0; k < RING; k++) { const t = k / (RING - 1); // degraded: spiky, same average
         let val = 1 + 0.9 * Math.sin(t * 22) + 0.5 * Math.sin(t * 7.3); if (Math.sin(t * 9.1) > 0.7) val = 0.05;
         const x = t * w, y = sparkY(h, Math.max(0, val)); k === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
@@ -438,7 +438,7 @@
       for (let k = sparks.length - 1; k >= 0; k--) {
         const s = sparks[k]; s.life -= dt * 1.6; if (s.life <= 0) { sparks.splice(k, 1); continue; }
         if (!project) continue; const q = project([s.lon, s.lat]); if (!q) continue;
-        trail.noStroke(); trail.fill(246, 168, 104, 70 * s.life); trail.circle(q[0], q[1], 2.4 * s.life + 0.6);
+        trail.noStroke(); trail.fill(232, 105, 77, 70 * s.life); trail.circle(q[0], q[1], 2.4 * s.life + 0.6);
       }
       tctx.restore();
 

@@ -24,7 +24,7 @@
   // ---- colour helpers ----
   const div = d3.scaleDiverging([-50, 0, 50], d3.interpolateRdYlGn);
   const rgb = (hex) => { const c = d3.color(hex) || d3.color("#888"); return [c.r, c.g, c.b]; };
-  const TEAL = [0, 212, 170];
+  const TEAL = [58, 214, 163];
   const lerp = (a, b, e) => a + (b - a) * e;
 
   // ---- L2: precipitationshed isolines from the real flow field (d3.contours) ----
@@ -102,12 +102,12 @@
     if (em.shed > 0.02 && contourPaths.length) {
       layers.push(new PathLayer({
         id: "shed-halo", data: contourPaths, getPath: (d) => d.path,
-        getColor: (d) => [0, 150, 130, 26 * d.t * em.shed], widthUnits: "pixels", getWidth: (d) => 5 + 8 * d.t,
+        getColor: (d) => [26, 168, 155, 26 * d.t * em.shed], widthUnits: "pixels", getWidth: (d) => 5 + 8 * d.t,
         capRounded: true, jointRounded: true, updateTriggers: { getColor: [em.shed] },
       }));
       layers.push(new PathLayer({
         id: "shed-core", data: contourPaths, getPath: (d) => d.path,
-        getColor: (d) => [lerp(0, 150, d.t), lerp(200, 255, d.t), lerp(170, 220, d.t), (70 + 150 * d.t) * em.shed],
+        getColor: (d) => [lerp(26, 150, d.t), lerp(168, 255, d.t), lerp(155, 210, d.t), (70 + 150 * d.t) * em.shed],
         widthUnits: "pixels", getWidth: (d) => 0.7 + 1.4 * d.t, capRounded: true, jointRounded: true,
         updateTriggers: { getColor: [em.shed] },
       }));

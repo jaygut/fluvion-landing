@@ -1,0 +1,121 @@
+/* brand.css - shared "graph of life" design system, matched to AI Ecologist
+   (jaygut.github.io/ai-ecologist-landing). One family: IBM Plex, deep-navy ground,
+   teal-green primary, coral secondary, mono labels. Loaded first by both Fluvion pages;
+   page CSS (cinematic_v2.css / report.css) adds only layout on top of these tokens. */
+:root{
+  /* ground */
+  --bg:#06141f; --bg-2:#081b29; --panel:#0b2030; --panel-2:#0e2738;
+  --navy:#0e2a47; --abyss:#08203a; --hairline:#15293a; --hairline-2:#1d3447; --grid:#102234;
+  /* ink */
+  --text:#eaf2f2; --ink:#eaf2f2; --muted:#8fa3ad; --dim:#8fa3ad; --faint:#5c6e78;
+  /* semantic accents */
+  --teal:#1aa89b; --teal-bright:#2bd4c4; --green:#3ad6a3; --coral:#e8694d;
+  --amber:#f2a24e; --purple:#a78bfa; --sand:#e9e1cc;
+  /* legacy Fluvion aliases remapped onto the family */
+  --water:#2bd4c4; --red:#e8694d; --moisture:#1aa89b;
+  /* type */
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --display:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono","JetBrains Mono",Consolas,monospace;
+  /* layout */
+  --maxw:1280px; --header-h:58px; --claim-h:34px;
+  --ease:cubic-bezier(0.22,0.61,0.36,1);
+}
+*{box-sizing:border-box}
+a{color:var(--teal-bright);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.skip-nav{position:fixed;left:8px;top:8px;z-index:200;background:var(--panel);color:var(--text);
+  padding:8px 12px;border:1px solid var(--teal);border-radius:6px;transform:translateY(-150%);
+  transition:transform .18s var(--ease);font-family:var(--mono);font-size:12px}
+.skip-nav:focus{transform:translateY(0)}
+:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px;border-radius:4px}
+
+/* ---- header lockup ---- */
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);display:flex;align-items:center;
+  justify-content:space-between;padding:0 clamp(16px,4vw,40px);z-index:100;
+  background:linear-gradient(180deg,rgba(6,20,31,.92),rgba(6,20,31,.55));backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--hairline)}
+.lockup{display:flex;align-items:center;gap:11px}
+.glyph{width:26px;height:26px;display:block}
+.lockup__name{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em}
+.lockup__name .gol{color:var(--muted);font-weight:400}
+.lockup__sep{color:var(--faint)}
+.lockup__product{color:var(--text)}
+.header-nav{display:flex;gap:20px;align-items:center}
+.header-nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.header-nav a:hover{color:var(--teal-bright);text-decoration:none}
+.header-nav .nav-cta{color:var(--bg);background:var(--green);padding:6px 13px;border-radius:6px;font-weight:600}
+.header-nav .nav-cta:hover{background:var(--teal-bright)}
+@media(max-width:760px){.header-nav a:not(.nav-cta){display:none}}
+
+/* ---- eyebrow (mono + glowing node dot) ---- */
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal-bright);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);flex:0 0 auto}
+.eyebrow.center{justify-content:center}
+
+/* ---- readouts (mono stat value + mono key) ---- */
+.readouts{display:flex;flex-wrap:wrap;gap:18px 26px;margin-top:18px}
+.readout{display:flex;flex-direction:column;gap:2px}
+.readout__v{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums;line-height:1}
+.readout__v.is-teal{color:var(--teal-bright)}
+.readout__v.is-coral{color:var(--coral)}
+.readout__v.is-amber{color:var(--amber)}
+.readout__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- honesty badge (dot) ---- */
+.badge{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.badge .dot{width:7px;height:7px;border-radius:50%}
+.badge.is-real{color:var(--green)}
+.badge.is-real .dot{background:var(--green);box-shadow:0 0 7px var(--green)}
+.badge.is-illustrative{color:var(--muted)}
+.badge.is-illustrative .dot{background:var(--faint);border:1px solid var(--muted)}
+
+/* ---- mono pill chips ---- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;padding:6px 12px;border:1px solid var(--hairline);
+  border-radius:999px;background:rgba(11,32,48,.6);color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+
+/* ---- coral honesty callout ---- */
+.callout{margin-top:16px;padding:12px 14px;border-radius:9px;background:rgba(232,105,77,.09);
+  border:1px solid rgba(232,105,77,.32);border-left:3px solid var(--coral);font-size:12.5px;line-height:1.5;color:#d7c9bf}
+.callout strong,.callout b{color:var(--coral)}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:9px;cursor:pointer;border:1px solid transparent;text-decoration:none}
+.btn--primary{background:var(--green);color:#052017}
+.btn--primary:hover{background:var(--teal-bright);text-decoration:none}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--hairline)}
+.btn--ghost:hover{border-color:var(--teal);text-decoration:none}
+
+/* ---- factsheet (the "verified snapshot" rail) ---- */
+.factsheet{background:var(--bg-2);border:1px solid var(--hairline);border-radius:14px;padding:22px 22px 18px}
+.factsheet h3{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-bright);margin:0 0 16px}
+.fact-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--hairline)}
+.fact-row:last-child{border-bottom:none}
+.fact-row .k{font-size:12.5px;color:var(--muted)}
+.fact-row .v{font-family:var(--mono);font-size:12.5px;color:var(--text);font-variant-numeric:tabular-nums;text-align:right}
+.fact-row .v small{color:var(--faint);font-size:10.5px;display:block}
+.factsheet .snapnote{margin-top:14px;font-family:var(--mono);font-size:10.5px;color:var(--faint);line-height:1.5}
+
+/* ---- built-by bio + contact ---- */
+.builtby{margin-top:40px;padding-top:22px;border-top:1px solid var(--hairline);font-size:13.5px;color:var(--muted);line-height:1.6;max-width:70ch}
+.builtby strong{color:var(--text)}
+.contactline{font-family:var(--mono);font-size:13.5px;color:var(--teal-bright);margin-top:6px}
+.contactline a{color:var(--teal-bright)}
+.contactline .sep{color:var(--faint)}
+
+/* ---- persistent claim strip (bottom) ---- */
+.claimbar{position:fixed;left:0;right:0;bottom:0;height:var(--claim-h);z-index:90;display:flex;align-items:center;gap:12px;
+  padding:0 clamp(14px,4vw,40px);background:rgba(6,17,26,.95);border-top:1px solid var(--hairline);
+  font-family:var(--mono);font-size:11px;color:var(--muted);backdrop-filter:blur(6px)}
+.claimbar .tag{color:var(--green);border:1px solid rgba(58,214,163,.4);border-radius:5px;padding:3px 8px;letter-spacing:.08em;white-space:nowrap}
+.claimbar .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.claimbar .snap{margin-left:auto;color:var(--faint);white-space:nowrap}
+.claimbar .snap a{color:var(--faint)}
+@media(max-width:640px){.claimbar .snap{display:none}}

@@ -1,8 +1,8 @@
 /* cinematic.css - full-screen deck.gl canvas with scroll-driven narrative overlay */
 :root{
-  --ink:#eaf2f0; --dim:#9fb2c0; --teal:#00d4aa; --water:#4fc3f7; --amber:#f4a261;
-  --red:#e63946; --bg:#06101f; --card:rgba(10,18,32,.72);
-  --display:'Space Grotesk','Inter',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --ink:#eaf2f0; --dim:#9fb2c0; --teal:#2bd4c4; --water:#1aa89b; --amber:#f2a24e;
+  --red:#e8694d; --bg:#06101f; --card:rgba(10,18,32,.72);
+  --display:'IBM Plex Sans',system-ui,sans-serif; --body:'IBM Plex Sans',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

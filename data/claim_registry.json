@@ -1,0 +1,179 @@
+{
+  "schema": "fluvion.claims/1",
+  "modes": {
+    "scenario_simulation": "If moisture-service loss is X, what is the risk/value distribution?",
+    "concurrent_hindcast": "Given observed historical rainfall, does the engine recover observed yield sign/rank?",
+    "descriptive_monitoring": "What is the observed current/recent condition of the source forest?",
+    "forecast_research": "Can a lead-time rainfall forecast improve loss estimates? (behind Gate F)",
+    "true_forecasting": "Given pre-season information, what loss is likely in the future?"
+  },
+  "claim_badges": [
+    "scenario_simulation",
+    "concurrent_hindcast",
+    "descriptive_monitoring"
+  ],
+  "claims": [
+    {
+      "id": "scenario_simulation_live",
+      "statement": "Scenario simulation is live for the validated corridor.",
+      "permission": "allowed",
+      "mode": "scenario_simulation",
+      "reason": "run_pipeline() runs S1-S5 as a Monte Carlo over parameter priors; an if-then valuation, not a probability over futures.",
+      "prerequisite_gate": "",
+      "caveat": "low/central/high f_loss are NAMED STRESSES, not calibrated probabilities; do not pool them as an interval.",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "concurrent_hindcast_live",
+      "statement": "Concurrent hindcast/backtest is live (sign/rank).",
+      "permission": "allowed_with_caveat",
+      "mode": "concurrent_hindcast",
+      "reason": "Gate 2 uses same-year CHIRPS rainfall to predict detrended IBGE yield anomalies; PASS for sign/rank (held-out 2024 r=+0.45; pooled r=+0.21, cluster-robust p~0.004 over ~22 event-years).",
+      "prerequisite_gate": "",
+      "caveat": "Sign/rank only, NOT severe-drought magnitude; this is CONCURRENT validation, not forecast skill. The 2021/22 financial backtest is an OBSERVED actual-vs-trend counterfactual, not an engine prediction.",
+      "depends_on_gate": "Gate 2 (concurrent backtest)"
+    },
+    {
+      "id": "descriptive_monitor_live",
+      "statement": "Source-condition monitoring is live (descriptive).",
+      "permission": "allowed_with_caveat",
+      "mode": "descriptive_monitoring",
+      "reason": "The ET/forest-loss monitor is partly corroborated (sign-strong, correlation-weak).",
+      "prerequisite_gate": "",
+      "caveat": "DESCRIPTIVE only and firewalled from price: it cannot modify f_loss, w_soybelt, A_source_ha, the USD/ha, or VaR. Not an early-warning or price/harvest forecast.",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "var_es_epistemic_only",
+      "statement": "VaR/ES may be reported.",
+      "permission": "allowed_with_caveat",
+      "mode": "cross_cutting",
+      "reason": "portfolio_var() computes VaR/ES over parameter priors.",
+      "prerequisite_gate": "",
+      "caveat": "EPISTEMIC parameter-uncertainty only (credible interval on EXPECTED annual loss); must carry var_basis; NOT a year-to-year aleatory tail; aleatory variability is Phase 2.",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "avoided_loss_per_ha_live",
+      "statement": "Avoided-loss USD/ha may be reported as a scenario range.",
+      "permission": "allowed_with_caveat",
+      "mode": "scenario_simulation",
+      "reason": "S5 inverts total downwind loss to a 30-yr NPV per ha; area-invariant at fixed w.",
+      "prerequisite_gate": "",
+      "caveat": "Reported as a RANGE (f_loss not backtested); a 30-yr NPV LOWER BOUND (water + one crop + one sink). Compare like-for-like: NPV vs land price ($295/ha), annual-flow vs Baker ($59.40/ha/yr) - never NPV vs an annual figure.",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "true_forecast_not_allowed",
+      "statement": "Forecast / operational predictive loss estimate.",
+      "permission": "forbidden",
+      "mode": "true_forecasting",
+      "reason": "No lead-time skill has passed any gate; current validation is concurrent, not predictive.",
+      "prerequisite_gate": "F",
+      "caveat": "",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "early_warning_not_allowed",
+      "statement": "Early warning / leading indicator.",
+      "permission": "gated",
+      "mode": "true_forecasting",
+      "reason": "Resilience / condition signals are descriptive and lagging, never a forecast.",
+      "prerequisite_gate": "F",
+      "caveat": "",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "price_forest_condition_not_allowed",
+      "statement": "Pricing forest-condition anomalies into value.",
+      "permission": "forbidden",
+      "mode": "descriptive_monitoring",
+      "reason": "ET/condition anomalies are descriptive and partly corroborated, not validated service-loss drivers; coupling them to price is unvalidated and forbidden.",
+      "prerequisite_gate": "",
+      "caveat": "",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "portfolio_ready_exposure_not_allowed",
+      "statement": "Portfolio-ready UK exposure.",
+      "permission": "gated",
+      "mode": "cross_cutting",
+      "reason": "s_uk is a low-confidence placeholder; the UK VaR is indicative until real trade/exposure data lands.",
+      "prerequisite_gate": "s_uk_replaced",
+      "caveat": "",
+      "depends_on_gate": ""
+    },
+    {
+      "id": "prudential_grade_not_allowed",
+      "statement": "Prudential-grade, regulatory-capital, or calibrated-coverage framing.",
+      "permission": "forbidden",
+      "mode": "cross_cutting",
+      "reason": "Outputs are indicative, not prudential-grade; coverage is a FLOOR (>=1-2a), never a calibrated 95 percent; effective n ~ event-years.",
+      "prerequisite_gate": "",
+      "caveat": "",
+      "depends_on_gate": ""
+    }
+  ],
+  "allowed": [
+    "scenario_simulation_live",
+    "concurrent_hindcast_live",
+    "descriptive_monitor_live",
+    "var_es_epistemic_only",
+    "avoided_loss_per_ha_live"
+  ],
+  "forbidden": [
+    "true_forecast_not_allowed",
+    "early_warning_not_allowed",
+    "price_forest_condition_not_allowed",
+    "portfolio_ready_exposure_not_allowed",
+    "prudential_grade_not_allowed"
+  ],
+  "forbidden_phrases": [
+    {
+      "phrase": "forecast skill",
+      "permitting_gate": "F",
+      "reason": "no lead-time skill earned"
+    },
+    {
+      "phrase": "forecasting skill",
+      "permitting_gate": "F",
+      "reason": "no lead-time skill earned"
+    },
+    {
+      "phrase": "we forecast",
+      "permitting_gate": "F",
+      "reason": "no lead-time skill earned"
+    },
+    {
+      "phrase": "we will forecast",
+      "permitting_gate": "F",
+      "reason": "no lead-time skill earned"
+    },
+    {
+      "phrase": "we predict",
+      "permitting_gate": "F",
+      "reason": "concurrent, not predictive"
+    },
+    {
+      "phrase": "predicted loss",
+      "permitting_gate": "F",
+      "reason": "concurrent, not predictive"
+    },
+    {
+      "phrase": "early warning",
+      "permitting_gate": "F",
+      "reason": "descriptive/lagging, not a forecast"
+    },
+    {
+      "phrase": "leading indicator",
+      "permitting_gate": "F",
+      "reason": "descriptive/lagging, not a forecast"
+    },
+    {
+      "phrase": "operational forecast",
+      "permitting_gate": "F",
+      "reason": "no operational skill"
+    }
+  ],
+  "_note": "Machine-readable claim permissions. true_forecasting is NOT allowed until Gate F passes; forecast/early-warning phrases are liftable only behind Gate F. The general diligence landmines (trademark, regulatory-treatment, calibrated-coverage) are enforced by the project commit guard, not this registry."
+}

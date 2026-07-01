@@ -17,5 +17,5 @@
     "slope_drought": 3.8975513139565177
   },
   "reconciliation_ratio": 2.0,
-  "_note": "Honest UQ: coverage is a FLOOR (>=1-2a), effective n~22 event-years; every interval is indicative, not prudential-grade."
+  "_note": "Honest UQ: coverage is a FLOOR (>=1-2a). The jackknife+ unit is ~22 event-year blocks (the CONCURRENT-UQ resampling unit, NOT 286 pooled state-years); this is DISTINCT from the ~5 independent-event effective-n that governs any forecast-SKILL claim (Gate F). Every interval is indicative, not prudential-grade."
 }

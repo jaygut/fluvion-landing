@@ -121,6 +121,14 @@
       "note": "All-use VTI R$1,525.62/ha x FX BRL->USD 0.1934; degraded-pasture VTN ~$210 lower anchor; cross-check Receita Federal VTN 2022."
     },
     {
+      "quantity": "Baker et al. 2026 rainfall-generation value (annual-flow cross-check)",
+      "value": 59.4,
+      "unit": "$/ha/yr (+/- 20.8)",
+      "source": "Baker et al. 2026, Quantifying tropical forest rainfall generation, Comms Earth & Environment 7:150, doi:10.1038/s43247-025-03159-3",
+      "confidence": "medium",
+      "note": "Published US$59.40/ha/yr (Amazon-forest rainfall generation); US$20 +/- 7 bn/yr Brazilian Legal Amazon. Per-ha sd inherited from the aggregate band (35%). Engine annual-equiv ~$31/ha/yr is ~half. Compare to annual-flow, NOT the 30-yr NPV."
+    },
+    {
       "quantity": "held-out 2024 backtest Pearson r",
       "value": 0.452,
       "unit": "-",

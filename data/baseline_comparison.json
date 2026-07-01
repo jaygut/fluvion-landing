@@ -1,0 +1,35 @@
+{
+  "schema": "fluvion.gate2_baselines/1",
+  "n": 286,
+  "method": "loglinear",
+  "engine": {
+    "rmse": 0.1508,
+    "pearson_r": 0.2073,
+    "sign_match": 0.5769
+  },
+  "baselines": {
+    "zero_skill_null": {
+      "pearson_r": 0.0,
+      "sign_match": 0.5
+    },
+    "climatology_zero_anomaly": {
+      "rmse": 0.154
+    },
+    "persistence": {
+      "rmse": 0.2101,
+      "n": 273
+    }
+  },
+  "margins": {
+    "pearson_r_over_zero_skill": 0.2073,
+    "sign_match_over_coin_flip": 0.0769,
+    "mse_skill_vs_climatology": 0.0405,
+    "mse_skill_vs_persistence": 0.4895
+  },
+  "verdict": {
+    "beats_zero_skill": true,
+    "beats_climatology": true,
+    "beats_persistence": true
+  },
+  "_note": "Engine margin over a STATED baseline (no new data; same IBGE PAM + CHIRPS pooled panel as Gate 2). MSE skill score = 1 - MSE_engine/MSE_baseline (>0 = beats it). The pooled Pearson r vs the r=0 null is the headline margin; its cluster-robust CI is in gate2_payload.json pooled_cluster_robust. CONCURRENT skill (rainfall known), NOT a forecast. The MSE margin over climatology is modest by design: the linear annual elasticity under-predicts magnitude, so predictions sit near zero (sign/rank, not magnitude)."
+}

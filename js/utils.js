@@ -5,11 +5,11 @@ const D = window.FLUVION_DATA;
 
 // ---- palette (design tokens, mirrored from the strategy) ----
 const C = {
-  moisture: "#00d4aa", water: "#4fc3f7", risk: "#ff8a65", riskDeep: "#d84315",
-  prov: "#b39ddb", success: "#66bb6a", warn: "#ffa726", danger: "#ef5350",
-  firewall: "#78909c", bgDark: "#0a0e1a", textLight: "#e8eaf6", textDim: "#7986cb",
+  moisture: "#0e7a70", water: "#1aa89b", risk: "#e8694d", riskDeep: "#c2442a",
+  prov: "#a78bfa", success: "#0f8059", warn: "#a86410", danger: "#c2442a",
+  firewall: "#5c6e78", bgDark: "#06141f", textLight: "#eaf2f2", textDim: "#5c6e78",
 };
-const CONF = { high: "#66bb6a", "medium-high": "#7cb342", medium: "#ffa726", low: "#ef5350" };
+const CONF = { high: "#0f8059", "medium-high": "#2f9e6f", medium: "#a86410", low: "#c2442a" };
 
 // ---- formatters ----
 const fmt = {

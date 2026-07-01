@@ -35,7 +35,11 @@
   ],
   "land_price_ref_usd_ha": 295,
   "land_price_provenance": "INCRA, Atlas do Mercado de Terras 2025 (ref. Dec 2024), AM-1502 Oeste Amazonense all-use average VTI R$1,525.62/ha; FX BRL->USD 0.1934 (26 Jun 2026) = USD 295/ha. Degraded-pasture VTN lower anchor ~USD 210/ha. Cross-check: Receita Federal VTN 2022 (parcel municipalities R$271-1,116/ha).",
-  "baker_annual_usd_ha_yr": 62,
+  "baker_annual_usd_ha_yr": 59.4,
+  "baker_annual_usd_ha_yr_sd": 20.8,
+  "baker_aggregate_usd_bn_yr": 20.0,
+  "baker_aggregate_sd_bn": 7.0,
+  "baker_source": "Baker et al. 2026, Quantifying tropical forest rainfall generation, Comms Earth & Environment 7:150, doi:10.1038/s43247-025-03159-3 (US$59.40/ha/yr Amazon-forest rainfall-generation value; US$20 +/- 7 bn/yr Brazilian Legal Amazon)",
   "engine_annual_equiv_usd_ha_yr": 31.1,
-  "_note": "Avoided-loss $/ha (30-yr NPV). Area-invariant at fixed w, so per-ha is uniform across parcels; total scales with area. f_loss is a non-backtested scenario -> reported as a RANGE. Lower bound (water + one crop + one sink)."
+  "_note": "Avoided-loss $/ha (30-yr NPV). Area-invariant at fixed w, so per-ha is uniform across parcels; total scales with area. f_loss is a non-backtested scenario -> reported as a RANGE. Lower bound (water + one crop + one sink). Baker cross-check is ANNUAL-FLOW ($59.40 +/- 20.8/ha/yr; per-ha sd inherited from the published $20 +/- 7 bn/yr aggregate): compare to engine_annual_equiv_usd_ha_yr, NOT to the 30-yr NPV."
 }

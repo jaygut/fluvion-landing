@@ -1,0 +1,32 @@
+{
+  "schema": "fluvion.status/1",
+  "generated_at": null,
+  "engine_version": "0.7.0",
+  "modes": {
+    "scenario_simulation": "live",
+    "concurrent_hindcast": "live (sign/rank only)",
+    "descriptive_monitoring": "live (descriptive, firewalled from price)",
+    "forecast_research": "Gate F NOT_RUN (forecast_claim_allowed=False)",
+    "true_forecasting": "not allowed until Gate F passes"
+  },
+  "claims": {
+    "allowed": 5,
+    "forbidden": 5,
+    "badges": [
+      "scenario_simulation",
+      "concurrent_hindcast",
+      "descriptive_monitoring"
+    ]
+  },
+  "gate_f": {
+    "status": "NOT_RUN",
+    "forecast_claim_allowed": false
+  },
+  "next_unlocks": [
+    "replace s_uk placeholder with Trase / UN Comtrade / FAOSTAT exposure (unlocks portfolio-ready UK VaR)",
+    "land source parcel polygons (retires the source-box proxy; keep the box-vs-parcel guard)",
+    "run the live WAM2layers annual ensemble (top Sobol driver; shrinks w uncertainty)",
+    "run the Gate-F forecast experiment (2021/22 + 2023/24, per-event, ~5-event interval) to earn forecast claims"
+  ],
+  "_note": "Auditable scenario simulator: scenario live, concurrent validation live, monitor firewalled, forecast claims fail-closed until Gate F proves lead-time skill."
+}

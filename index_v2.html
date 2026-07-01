@@ -17,9 +17,11 @@
 <meta name="twitter:title" content="Fluvion · Flying Rivers, priced">
 <meta name="twitter:description" content="Teleconnected Water Value-at-Risk: pricing the upwind forest that makes the rain.">
 <meta name="twitter:image" content="https://jaygut.github.io/fluvion-landing/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%203C16%203%206%2015%206%2021a10%2010%200%200020%200C26%2015%2016%203%2016%203z'%20fill='%2300d4aa'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2026%2026'%3E%3Ccircle%20cx='6'%20cy='7'%20r='3'%20fill='%231aa89b'/%3E%3Ccircle%20cx='19'%20cy='6'%20r='3'%20fill='%233ad6a3'/%3E%3Ccircle%20cx='9'%20cy='20'%20r='3.4'%20fill='%23e8694d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/brand.css">
 <link rel="stylesheet" href="css/cinematic_v2.css">
 <script src="vendor/deck.gl.min.js"></script>
 <script src="vendor/d3.v7.min.js"></script>
@@ -32,8 +34,21 @@
 <div id="atmo"></div>
 <div class="vignette"></div>
 <div class="progress" id="prog"></div>
-<div class="brand">Flu<b>vion</b><span class="v2tag">LIVING PRECIPITATIONSHED</span></div>
-<a class="skipto" href="report.html">Full report →</a>
+<header class="site-header">
+  <a class="lockup" href="#story" aria-label="Fluvion, home">
+    <svg class="glyph" viewBox="0 0 26 26" aria-hidden="true">
+      <line x1="6" y1="7" x2="19" y2="6" stroke="#1aa89b" stroke-width="1.3" opacity="0.8"/>
+      <line x1="6" y1="7" x2="9" y2="20" stroke="#1aa89b" stroke-width="1.3" opacity="0.8"/>
+      <line x1="19" y1="6" x2="9" y2="20" stroke="#1aa89b" stroke-width="1.3" opacity="0.55"/>
+      <circle cx="6" cy="7" r="3" fill="#1aa89b"/><circle cx="19" cy="6" r="3" fill="#3ad6a3"/><circle cx="9" cy="20" r="3.4" fill="#e8694d"/>
+    </svg>
+    <span class="lockup__name"><span class="lockup__product">Fluvion</span><span class="lockup__sep"> · </span><span class="gol">teleconnected Water Value-at-Risk engine</span></span>
+  </a>
+  <nav class="header-nav" aria-label="primary">
+    <a href="report.html">Brief</a>
+    <a href="report.html#s9" class="nav-cta">Start a pilot</a>
+  </nav>
+</header>
 <div class="legend" id="legend"></div>
 <div class="illus" id="illus"></div>
 
@@ -132,14 +147,24 @@
       <div class="eyebrow">The ask</div>
       <h2 class="head">One corridor, proven. Two ways to back it.</h2>
       <p class="body">One open core and one commercial layer, by the same company. The open engine is the auditable standard underneath; the commercial layer prices it and serves it, to an investment desk or an AI agent, by API. The same engine reads two ways: it prices the dependency for the desks that carry the downside, and it grades the source for the capital that protects it. The science is built, validated, and checked line by line for one corridor. Scaling it to the world's flying rivers is a compute problem: dozens of corridors, each its own supercomputing run and validation campaign, which is what backing this builds. The next move is yours.</p>
-      <a class="cta" href="report.html">See the evidence, and try the live model →</a>
-      <p class="footnote">Built entirely from open public data and real computation. Every figure is indicative, not prudential grade. The live three model moisture ensemble is the next upgrade. <span class="defer">Phase 1B</span></p>
+      <div class="cta-row" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px">
+        <a class="btn btn--primary" href="report.html#s9">Start a pilot</a>
+        <a class="btn btn--ghost" href="report.html">Read the full brief</a>
+      </div>
+      <p class="contactline" style="margin-top:18px"><a href="mailto:jg@graphoflife.com">jg@graphoflife.com</a> <span class="sep">·</span> <a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a></p>
+      <p class="footnote">Built entirely from open public data and real computation. Every figure is indicative, not prudential grade. The live three-model moisture ensemble is the next upgrade. <span class="defer">Phase 1B</span></p>
+      <p class="builtby" style="margin:22px auto 0;text-align:left">Built by <strong>Jay Gutierrez, PhD</strong>, working at the intersection of ecological network science, graph intelligence, nature-finance translation, and publishing the work that defines the structural-risk category.</p>
     </div>
   </section>
 
 </main>
 
 <div class="scroll-hint" id="hint">scroll ↓</div>
+<footer class="claimbar">
+  <span class="tag">INDICATIVE</span>
+  <span class="txt">Indicative, not prudential grade. Decision-useful, for awareness. Every figure traces to open data or a real computation.</span>
+  <span class="snap">Fluvion · <a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a> · snapshot 2026-06-29</span>
+</footer>
 <script src="js/cinematic_v2.js"></script>
 <script src="js/atmosphere.js"></script>
 </body>

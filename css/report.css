@@ -51,7 +51,16 @@ a.cite{color:var(--water);text-decoration:none;font-size:.8em;vertical-align:sup
 .figure .prov{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid #f0f0f0;font-size:11.5px;color:#888}
 .figure .prov .src{font-weight:600;color:#666}
 .badge-defer{display:inline-block;background:#eceff1;color:#607d8b;border:1px dashed #b0bec5;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600}
-footer{max-width:1080px;padding:30px 64px 60px;color:#999;font-size:12px;border-top:1px solid #eee;margin:0 auto}
+footer{max-width:1080px;padding:34px 64px 64px;color:#5c6e78;font-size:12px;border-top:1px solid #d7dee2;margin:0 auto}
+.report-footer .rf-brand{display:flex;align-items:center;gap:9px;font-family:var(--font);font-size:14px;color:var(--text-dark);margin-bottom:12px}
+.report-footer .rf-line{max-width:70ch;line-height:1.6;margin:0 0 14px}
+.report-footer .contactline{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;margin:0 0 12px}
+.report-footer .contactline a{color:#0e7a70;text-decoration:none;border-bottom:1px solid rgba(14,122,112,.32)}
+.report-footer .contactline a:hover{border-bottom-color:#0e7a70}
+.report-footer .contactline .sep{color:#c9d3d8;margin:0 4px}
+.report-footer .builtby{max-width:70ch;line-height:1.55;color:#5c6e78;margin:0 0 12px}
+.report-footer .builtby strong{color:var(--text-dark);font-weight:600}
+.report-footer .rf-snap{font-family:var(--mono);font-size:11px;color:#9aa7ad;margin:0}
 @media(max-width:880px){.layout{flex-direction:column}.sidebar{position:static;height:auto;flex:none;border-right:none;border-bottom:1px solid #e6e6e6}main{padding:24px 18px 80px}.tracks{flex-direction:column}}
 
 /* ---- live Water Value-at-Risk calculator ---- */
@@ -64,7 +73,7 @@ footer{max-width:1080px;padding:30px 64px 60px;color:#999;font-size:12px;border-
 .calc-row input[type=range]{width:100%;accent-color:var(--moisture)}
 .seg{display:flex;border:1px solid #ddd;border-radius:9px;overflow:hidden}
 .seg-btn{flex:1;padding:8px 4px;border:none;background:#fff;font-size:13px;cursor:pointer;color:#666}
-.seg-btn.on{background:var(--moisture);color:#04241c;font-weight:700}
+.seg-btn.on{background:var(--moisture);color:#f7f6f2;font-weight:700}
 .parcels{display:flex;flex-direction:column;gap:6px}
 .pchk{display:flex;align-items:center;gap:8px;font-size:13px;color:#444;cursor:pointer}
 .pchk input{accent-color:var(--moisture)}
@@ -202,9 +211,45 @@ h2 .num{margin-left:-2px}
 .corr-on{background:var(--success);color:#fff}
 .corr-off{background:#eceff1;color:#778}
 .corr-foot{font-size:12px;color:#888;margin-top:12px}
+
+/* ---- CRO and claim-gate receipt (S-receipts) ---- */
+.cro-live{font-size:13px;color:#445}
+.cro-header{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;margin-bottom:14px}
+.cro-eyebrow{font-family:var(--mono);font-size:11px;color:#78909c;text-transform:uppercase;letter-spacing:.05em}
+.cro-header h4{margin:4px 0 4px;font-size:1.05rem;color:var(--text-dark)}
+.cro-header p{font-size:.9rem;margin:0;color:#59666f;max-width:none}
+.cro-chip{font-family:var(--mono);font-size:11.5px;background:#eef7f5;border:1px solid #cfe8e1;border-radius:999px;padding:6px 10px;color:#2b665b;white-space:nowrap}
+.cro-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 14px}
+.cro-metric{background:#f8fbfb;border:1px solid #e4eeee;border-radius:8px;padding:10px 11px}
+.cro-metric span{display:block;font-size:11px;color:#7a8590;text-transform:uppercase;letter-spacing:.04em}
+.cro-metric b{display:block;font-family:var(--mono);font-size:1.15rem;color:#1f2a35;margin:3px 0}
+.cro-metric em{display:block;font-size:11.5px;color:#7c8790;font-style:normal;line-height:1.35}
+.cro-panels{display:grid;grid-template-columns:.9fr 1.1fr;gap:12px;align-items:start}
+.cro-panels-bottom{grid-template-columns:1fr 1fr;margin-top:12px}
+.cro-card{border:1px solid #e8eef1;border-radius:8px;background:#fff;padding:12px 13px}
+.cro-card h5{margin:0 0 9px;font-size:13px;color:#2f3b45}
+.cro-gate-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid #eef2f4;padding:5px 0;font-size:12px}
+.cro-gate-row:last-child{border-bottom:none}
+.cro-gate-row b{font-family:var(--mono);font-size:11px;color:#667}
+.cro-status-pass b{color:#2e7d32}.cro-status-not-run b{color:#7a5ec2}.cro-status-fail b{color:#c62828}.cro-status-unknown b{color:#b0853a}
+.claim-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.claim-cols b{font-size:12px;color:#334}
+.claim-cols ul{margin:5px 0 0;padding-left:16px}
+.claim-cols li{font-size:11.8px;line-height:1.38;margin:4px 0;color:#5d6870}
+.cro-table{width:100%;border-collapse:collapse;font-size:12px}
+.cro-table td{padding:6px 4px;border-bottom:1px solid #eef2f4;vertical-align:top}
+.cro-table td:first-child{font-weight:700;color:#52606b;width:104px}
+.cro-note{font-size:11.5px!important;color:#7a8590!important;line-height:1.45;margin:8px 0 0!important;max-width:none!important}
+.baseline-mini svg{margin-top:2px}
+@media(max-width:760px){
+  .cro-header,.cro-panels,.cro-panels-bottom,.claim-cols{grid-template-columns:1fr}
+  .cro-metrics{grid-template-columns:1fr 1fr}
+  .cro-chip{white-space:normal}
+}
 /* mobile: contain wide figures so they do not scroll the whole page */
 @media(max-width:620px){
   #fig-global .canvas{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #fig-cro .canvas{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .corr-table{min-width:520px;font-size:12px}
   .gate-row{flex-wrap:wrap}
   .gate-name{flex:1 1 auto;min-width:0}
