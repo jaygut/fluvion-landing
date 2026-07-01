@@ -115,3 +115,9 @@ h2.head{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.6vw,
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}.scroll-hint{animation:none}.card{transition:none}
 }
+
+/* scene-8 evidence summary: recipe-free proof + what is in the gated pack */
+.pack-proof{list-style:none;margin:22px auto 4px;padding:0;max-width:56ch;text-align:left;display:grid;gap:11px}
+.pack-proof li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.5;color:var(--muted)}
+.pack-proof li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.pack-proof b{color:var(--text);font-weight:600}
