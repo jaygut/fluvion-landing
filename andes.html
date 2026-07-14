@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluvion · Flying Rivers: two Andean water towers</title>
+<meta name="description" content="The rain that feeds Quito and Bogota is partly made in the Amazon, a thousand kilometres east. Using the same open moisture map that priced the Amazon-to-soy corridor, we measure each city's Amazon share: Quito is Amazon-facing, Bogota is a genuine mix. Descriptive regional attribution only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/andes.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='7' cy='8' r='3' fill='%231aa89b'/%3E%3Ccircle cx='17' cy='7' r='3' fill='%233ad6a3'/%3E%3Ccircle cx='12' cy='17' r='3' fill='%23e8694d'/%3E%3C/svg%3E">
+<!-- vendored libs (self-hosted, no CDN at runtime) -->
+<script src="vendor/d3.v7.min.js"></script>
+<script src="vendor/scrollama.min.js"></script>
+<script src="vendor/deck.gl.min.js"></script>
+<script src="vendor/p5.min.js"></script>
+<!-- the single data source of truth: every number on this page binds to window.ANDES_DATA -->
+<script src="data/andes/andes_public.js"></script>
+</head>
+<body>
+
+<!-- ===== fixed stage ===== -->
+<div id="deckwrap"></div>
+<div id="atmo"></div>
+<div class="vignette"></div>
+<div class="progress" id="prog"></div>
+
+<!-- ===== header ===== -->
+<header class="site-header">
+  <a class="lockup" href="#story">
+    <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
+      <line x1="7" y1="8" x2="17" y2="7" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <line x1="7" y1="8" x2="12" y2="17" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <line x1="17" y1="7" x2="12" y2="17" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <circle cx="7" cy="8" r="3" fill="#1aa89b"/><circle cx="17" cy="7" r="3" fill="#3ad6a3"/>
+      <circle cx="12" cy="17" r="3" fill="#e8694d"/>
+    </svg>
+    <span class="lockup__name"><span class="lockup__product">Fluvion</span>
+      <span class="lockup__sep"> · </span><span class="gol">teleconnected water security</span></span>
+    <span class="v2tag">Corridor 2</span>
+  </a>
+</header>
+
+<!-- ===== measured / illustrative overlays (toggled per scene) ===== -->
+<div class="legend" id="legend"></div>
+<div class="illus" id="illus"></div>
+<div class="scroll-hint" id="hint">scroll &darr;</div>
+
+<!-- ===== story ===== -->
+<main class="story" id="story">
+
+  <section class="step center active" data-scene="hook">
+    <div class="card">
+      <div class="eyebrow">Flying rivers · Andes</div>
+      <h1 class="hero-title">Flying <span class="a">Rivers</span></h1>
+      <p class="body">Two Andean capitals drink rain that begins far to the east. Moisture the Amazon rainforest
+        breathes into the sky rides the wind up the mountains and falls on the high paramo grasslands that feed
+        <strong>Quito</strong> and <strong>Bogota</strong>. The same engine that priced an Amazon-to-soy corridor
+        now follows that water back to its source and measures how much of each city's rain the forest makes.</p>
+      <p class="proof">RECON 2008-2017 open climatology · one moisture map, re-read at two cities · every figure traced to source</p>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="quito">
+    <div class="card">
+      <div class="eyebrow">Quito · the Amazon-facing tower</div>
+      <h2 class="head">More of Quito's rain is made in the Amazon than anywhere else.</h2>
+      <p class="body">Of the rain that falls on the high grasslands feeding Quito, the Amazon is the single largest
+        source, <span class="hl" id="q-amazon"></span> in a typical year. Those grasslands drain east toward the
+        Amazon, and the prevailing wind carries Amazon moisture straight up the eastern slope. On the map, the teal
+        ribbon's <span class="hl">width is that measured share</span>, drawn from the western Amazon into the water
+        tower.</p>
+      <div class="wedgewrap"><div class="wtitle"><span class="wsite">Where Quito's rain is born</span>
+        <span class="wframe">typical year</span></div>
+        <div class="wedgebar" id="andes-wedge-quito"></div>
+        <div class="wedgeread" id="andes-read-quito"></div>
+        <div class="wedgeleg" id="andes-leg-quito"></div></div>
+    </div>
+  </section>
+
+  <section class="step" data-scene="bogota">
+    <div class="card">
+      <div class="eyebrow">Bogota · an honest mix</div>
+      <h2 class="head">Bogota's water is a genuine mix, and that honesty is the point.</h2>
+      <p class="body">For Bogota the Amazon is a minority, <span class="hl" id="b-amazon"></span>, behind the closer
+        Orinoco basin at <span class="hl" id="b-orinoco"></span> and behind moisture off the ocean and other land. We
+        report the measured <span class="green">Amazon slice</span>, <span class="red">not the whole city</span>. On the
+        map, Bogota's thin teal Amazon ribbon sits behind a wider amber Orinoco ribbon. The reservoir that supplies
+        much of the city, Chuza, holds <span class="hl" id="chuza-cap"></span>. Bogota is not an Amazon water tower, and
+        we do not call it one.</p>
+      <div class="wedgewrap"><div class="wtitle"><span class="wsite">Where Bogota's rain is born</span>
+        <span class="wframe">typical year</span></div>
+        <div class="wedgebar" id="andes-wedge-bogota"></div>
+        <div class="wedgeread" id="andes-read-bogota"></div>
+        <div class="wedgeleg" id="andes-leg-bogota"></div></div>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="season">
+    <div class="card">
+      <div class="eyebrow">The dry season</div>
+      <h2 class="head">In the dry season, the Amazon's share climbs.</h2>
+      <p class="body">A separate three-model seasonal cross-check (AMSSRAB) shows the Amazon's share rising through the
+        June-August dry season, to <span class="hl" id="q-jja"></span> for Quito and <span class="hl" id="b-jja"></span>
+        for Bogota, when local rain is scarce and the forest upwind matters most. Step through the year:</p>
+      <div class="seasontoggle" id="andes-seasons">
+        <div class="stitle">Season · annual first, then the seasonal cross-check</div>
+        <div class="seasonbtns" id="andes-season-btns"></div>
+        <div class="seasonbars" id="andes-season-bars"></div>
+        <div class="seasonread" id="andes-season-read"></div>
+      </div>
+      <p class="callout">This seasonal cross-check is coarser than the annual number and is computed separately. It
+        corroborates the pattern; it does not replace the annual figure and is not a claim about any single drought.</p>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="honesty">
+    <div class="card">
+      <div class="eyebrow">The resolution</div>
+      <h2 class="head">A region, not a pixel.</h2>
+      <p class="body">The source map works in <span class="hl"><span id="res-deg"></span> degree</span> squares, about
+        <span class="hl"><span id="res-km"></span> km</span> across near the equator. A paramo intake is far smaller
+        than one square, so this is a useful regional attribution, never a per-pixel or single-drought number. We
+        show exactly what is measured and what is not: the attribution and the seasonal check are done; the
+        water-supply price stays locked until observed hydrology is in. Any future valuation would anchor to the
+        real protected paramo, never a grid square.</p>
+      <div class="gates" id="andes-gates"></div>
+      <p class="callout">Not a forecast; not an attribution of any single drought. RECON is a 2008-2017 climatology with
+        no year-to-year signal.</p>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="engine">
+    <div class="card">
+      <div class="eyebrow">One engine</div>
+      <h2 class="head">One audited method. A library of corridors.</h2>
+      <p class="body">Nothing new was measured for the Andes. We re-read the same open moisture map that priced the
+        Amazon-to-soy corridor, now at each city's water tower, and as a check it reproduces that corridor's headline
+        weight <span class="hl">w = <span id="reuse-w"></span></span> exactly. Both corridors ride one audited path,
+        which is the point: Fluvion is a corridor engine, not a one-off soy calculator. Turning this attribution into
+        a water-supply price is the next gate, not today's claim. It needs what we will not invent: observed river flow
+        that the Amazon signal explains better than season-average and last-year baselines, the same bar the soy
+        corridor already cleared. Until it does, the price stays locked.</p>
+      <div class="anchorchip">Same map, same method &middot; reproduces <b>w_soybelt = <span id="anchor-w"></span></b></div>
+      <div class="corridorgrid" id="andes-corridors"></div>
+      <p class="callout">A same-map consistency check, not independent validation: it shows both corridors use the
+        identical audited method, not that the attribution is externally confirmed.</p>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="ask">
+    <div class="card">
+      <div class="eyebrow">The ask</div>
+      <h2 class="head">Corridor one is priced. This is corridor two.</h2>
+      <p class="body">Soy shows the completed chain: moisture, to harvest, to an avoided-loss value that already beats
+        the land price. The Andes shows the same chain travel to municipal water security, and stay honest where the
+        evidence is not yet in. Serious counterparties can inspect the full attribution and the provenance ledger,
+        re-run every number on this page, or help close the hydrology gate that turns this map into a water-security
+        price. Every figure traces to a committed computation.</p>
+      <p style="margin-top:18px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <a class="ghost" href="soy-belt.html">See the soy corridor, priced</a>
+        <a class="ghost" href="mailto:jg@graphoflife.com?subject=Fluvion%20evidence%20pack%20request&amp;body=Hi%20Jay%2C%0D%0A%0D%0AI%27d%20like%20the%20Fluvion%20evidence%20pack.%0D%0A%0D%0AName%3A%0D%0AOrganisation%3A%0D%0ARole%3A%0D%0AWhat%20we%27re%20exploring%3A%0D%0A">Request the evidence pack</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== persistent honesty strip ===== -->
+<footer class="claimbar">
+  <span class="tag">DESCRIPTIVE</span>
+  <span class="txt">Descriptive regional attribution. Not a forecast; not an attribution of any single drought. Every figure traces to open data or a real computation.</span>
+  <span class="snap">Fluvion · <span id="snap-date">2026-07-07</span></span>
+</footer>
+
+<!-- ===== scripts (controller first, then widgets, then atmosphere) ===== -->
+<script src="js/andes_stage.js"></script>
+<script src="js/andes_widgets.js"></script>
+<script src="js/andes_atmosphere.js"></script>
+</body>
+</html>

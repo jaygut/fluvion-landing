@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluvion · Rain Has a Supply Chain</title>
+<meta name="description" content="A public-reference Nordic forest landscape mapped through atmospheric moisture dependencies, hydroclimate context, descriptive condition evidence, and explicit claim boundaries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/brand.css?v=20260714g">
+<link rel="stylesheet" href="css/cinematic_v2.css?v=20260714g">
+<link rel="stylesheet" href="css/nordic_forest.css?v=20260714g">
+<script src="vendor/d3.v7.min.js"></script>
+<script src="vendor/scrollama.min.js"></script>
+<script src="vendor/deck.gl.min.js"></script>
+<script src="vendor/p5.min.js"></script>
+<script>window.__NORDIC_RELEASE__ = "20260714g";</script>
+<script src="data/nordic_forest/nordic_forest_public.js?v=20260714g"></script>
+</head>
+<body>
+<a class="skip-link" href="#story">Skip to the story</a>
+<div id="nordic-stage" aria-hidden="true"></div>
+<div id="atmo" aria-hidden="true"></div>
+<div class="vignette"></div>
+<div class="progress" id="prog"></div>
+
+<header class="site-header">
+  <a class="lockup" href="#story" aria-label="Fluvion Nordic forest story">
+    <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
+      <line x1="7" y1="8" x2="17" y2="7" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <line x1="7" y1="8" x2="12" y2="17" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <line x1="17" y1="7" x2="12" y2="17" stroke="#1aa89b" stroke-width="1.2" opacity=".6"/>
+      <circle cx="7" cy="8" r="3" fill="#1aa89b"/><circle cx="17" cy="7" r="3" fill="#3ad6a3"/>
+      <circle cx="12" cy="17" r="3" fill="#e8694d"/>
+    </svg>
+    <span class="lockup__name"><span class="lockup__product">Fluvion</span><span class="lockup__sep"> · </span><span class="gol">atmospheric dependency intelligence</span></span>
+    <span class="v2tag">Forest asset</span>
+  </a>
+</header>
+
+<div class="legend" id="legend"></div>
+<div class="scroll-hint" id="hint">scroll &darr;</div>
+
+<main class="story" id="story">
+  <section class="step center active" data-scene="hook">
+    <div class="card hero-card">
+      <div class="eyebrow">Atmospheric dependency intelligence</div>
+      <h1 class="hero-title">Rain Has a<br><span class="a">Supply Chain</span></h1>
+      <p class="body">A public-reference forest landscape in northern Sweden depends on rain assembled across a much wider atmospheric system. Fluvion maps this hidden supply chain, connects it with local climate and satellite evidence, and packages both the resolved evidence and the remaining uncertainty into one signed asset object.</p>
+      <p class="proof" id="hero-proof"></p>
+      <span class="status-pill">PUBLIC REFERENCE · SIGNED OBJECT</span>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="blindspot">
+    <div class="card">
+      <div class="eyebrow">The missing layer</div>
+      <h2 class="head">A coordinate locates the asset. Its water dependencies extend far beyond it.</h2>
+      <p class="body">Most risk systems begin at the asset boundary with location, local hazards, sensitivity, and financial impact. Fluvion adds the inbound atmospheric layer and shows where the asset’s rain comes from, how much of the source mix is named, and how the evidence should be used.</p>
+      <div class="layer-stack" id="layer-stack"></div>
+      <p class="source-line">Market context from <a href="https://www.spglobal.com/sustainable1/en/solutions/physical-climate-risk-solutions" target="_blank" rel="noreferrer">S&amp;P Global physical climate risk</a> · <a href="https://tnfd.global/publication/additional-guidance-on-assessment-of-nature-related-issues-the-leap-approach/" target="_blank" rel="noreferrer">TNFD LEAP</a> · <a href="https://tnfd.global/publication/additional-sector-guidance-forestry-pulp-and-paper/" target="_blank" rel="noreferrer">TNFD forestry guidance</a></p>
+      <p class="callout value-callout">Atmospheric dependency adds decision context to existing hazard intelligence.</p>
+    </div>
+  </section>
+
+  <section class="step" data-scene="asset">
+    <div class="card">
+      <div class="eyebrow">The reference asset</div>
+      <h2 class="head"><span id="asset-area-head"></span> hectares of real forest, with a public research boundary.</h2>
+      <p class="body">The public Krycklan research landscape provides a defensible boundary and a precise evidence class. It establishes the physical reference for this demonstration. Commercial deployment begins with an authorized owner-supplied boundary.</p>
+      <div class="tabset" id="asset-tabs" aria-label="Asset evidence"></div>
+      <div class="evidence-panel" id="asset-evidence"></div>
+      <span class="status-pill">PUBLIC REFERENCE · G1 GEOMETRY</span>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="forest">
+    <div class="card">
+      <div class="eyebrow">The forest inside the boundary</div>
+      <h2 class="head">Most of the landscape is productive forest. An independent map checks the result.</h2>
+      <p class="body">The Swedish land-cover map provides the primary classification. WorldCover provides an independent check of forest presence, and the mapping difference is measured.</p>
+      <div class="toggle" id="forest-toggle" aria-label="Forest evidence view"></div>
+      <div class="forest-bars" id="forest-bars"></div>
+      <div class="audit-readout" id="forest-readout"></div>
+      <span class="status-pill">PRIMARY MAP + INDEPENDENT CHECK · MEDIUM CONFIDENCE</span>
+    </div>
+  </section>
+
+  <section class="step" data-scene="scale">
+    <div class="card">
+      <div class="eyebrow">Asset scale versus physics scale</div>
+      <h2 class="head">The asset is precise. The atmospheric model retains its native scale.</h2>
+      <p class="body">The public forest boundary is precise. The moisture analysis operates over four atmospheric grid cells around it. Fluvion reports each scale explicitly, preserving the resolution supported by the regional physics.</p>
+      <div class="toggle" id="scale-toggle" aria-label="Scale lens"></div>
+      <div class="big-ratio" id="support-ratio"></div>
+      <p class="callout">Both scales remain visible throughout the evidence chain.</p>
+    </div>
+  </section>
+
+  <section class="step" data-scene="moisture">
+    <div class="card">
+      <div class="eyebrow">The atmospheric mix</div>
+      <h2 class="head">The named source mix changes from year to year.</h2>
+      <p class="body">Choose a tracked May-to-September year. Each view uses the same accounting basis and retains the full atmospheric balance.</p>
+      <p class="map-method">Moving particles follow representative source-class paths and carry the exact class composition. The animation shows class-level pathways for the named source mix.</p>
+      <div class="toggle" id="wam-years" aria-label="WAM year"></div>
+      <div class="stacked-composition" id="wam-composition"></div>
+      <div class="audit-readout" id="wam-readout"></div>
+      <details class="audit-drawer"><summary>How is the full balance handled?</summary><p id="residual-definition"></p><div id="wam-qa"></div></details>
+      <span class="status-pill">PHYSICAL ACCOUNTING PASSED · FULL BALANCE RETAINED</span>
+    </div>
+  </section>
+
+  <section class="step" data-scene="hydro">
+    <div class="card">
+      <div class="eyebrow">The event year</div>
+      <h2 class="head">2018 was dry, hot, and locally persistent.</h2>
+      <p class="body">The event provides local hydroclimate context. Attribution to an individual moisture source requires additional causal evidence.</p>
+      <div class="toggle" id="hydro-metric" aria-label="Hydroclimate metric"></div>
+      <div class="year-scrubber" id="hydro-years"></div>
+      <div class="metric-grid" id="hydro-readout"></div>
+      <span class="status-pill">SMHI 4 KM SPATIAL ANALYSIS · LOCAL CONTEXT</span>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="condition">
+    <div class="card wide-card">
+      <div class="eyebrow">The observed condition</div>
+      <h2 class="head">Satellite evidence reveals a condition signal for the next validation stage.</h2>
+      <p class="body">NDMI moved in the expected stress direction while NDVI produced a contrasting response. Fluvion carries both signals into the evidence object and keeps causal interpretation in the next validation stage.</p>
+      <div class="toggle" id="condition-tabs" aria-label="Condition evidence"></div>
+      <div id="condition-view"></div>
+      <span class="status-pill">DESCRIPTIVE CONDITION EVIDENCE · CAUSAL STUDY NEXT</span>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="object">
+    <div class="card object-card">
+      <div class="eyebrow">Traceable decision evidence</div>
+      <h2 class="head">One signed object. Every conclusion carries its evidence status.</h2>
+      <div class="risk-object" id="risk-object"></div>
+      <div class="provenance-drawer" id="provenance-drawer" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="platform">
+    <div class="card wide-card">
+      <div class="eyebrow">The platform</div>
+      <h2 class="head">One dependency engine. Three different decisions.</h2>
+      <p class="body">Each demonstration supports a different decision and states the evidence available for that use. Fluvion packages dependency, confidence, and provenance in the same signed object structure.</p>
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
+
+  <section class="step right" data-scene="commercial">
+    <div class="card wide-card">
+      <div class="eyebrow">Public proof, private deployment</div>
+      <h2 class="head">Bring an authorized boundary. Keep the geometry sealed.</h2>
+      <div class="workflow" id="commercial-workflow"></div>
+      <div class="commercial-columns" id="commercial-requirements"></div>
+      <span class="status-pill">READY FOR AUTHORIZED GEOMETRY · PUBLIC REFERENCE SHOWN</span>
+    </div>
+  </section>
+
+  <section class="step center" data-scene="ask">
+    <div class="card wide-card ask-card">
+      <div class="eyebrow">The next proof</div>
+      <h2 class="head">Bring one asset boundary and one decision.</h2>
+      <div class="partner-grid" id="partner-grid"></div>
+      <p class="primary-question">Where would atmospheric-dependency intelligence change a decision in your workflow, and what evidence would establish trust?</p>
+      <div class="cta-row">
+        <a class="ghost" href="mailto:jg@graphoflife.com?subject=Fluvion%20Nordic%20forest%20design-partner%20conversation&amp;body=Hi%20Jay%2C%0D%0A%0D%0AI%27d%20like%20to%20explore%20where%20an%20atmospheric-dependency%20layer%20could%20fit%20our%20workflow.%0D%0A%0D%0AOrganisation%3A%0D%0ADecision%20workflow%3A%0D%0AEvidence%20required%3A%0D%0A">Start a design-partner conversation</a>
+        <a class="ghost" href="soy-belt.html">Soy Belt</a>
+        <a class="ghost" href="andes.html">Andes</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="endmatter" aria-labelledby="compute-headline">
+  <div class="compute-panel">
+    <div class="eyebrow">The compute behind the clarity</div>
+    <h2 class="compute-headline" id="compute-headline">Heavy computation upstream. Decision-ready intelligence downstream.</h2>
+    <div class="compute-copy">
+      <p>Static hazard maps retrieve fixed exposure layers. Fluvion reconstructs an asset’s atmospheric supply chain from large, multi-year climate and Earth-observation datasets. This work requires substantial compute and memory. Moisture is tracked through space and time, reconciled for physical closure, connected to asset geometry, and checked against independent evidence.</p>
+      <p>The output is a compact, provenance-aware risk object. It can be inspected here and ultimately delivered into portfolio, underwriting, due-diligence, and resilience workflows.</p>
+    </div>
+    <p class="compute-close">The computational work is centralized. The resulting dependency intelligence moves into the systems where decisions are made.</p>
+  </div>
+
+  <footer class="investor-footer">
+    <p class="investor-contact"><a href="mailto:jg@graphoflife.com">jg@graphoflife.com</a><span aria-hidden="true"> · </span><a href="https://biome-translator.emergent.host/">biome-translator.emergent.host</a></p>
+    <p class="investor-disclosure">Built entirely from open public data and real computation. Every figure is indicative and intended<br class="desktop-break">
+      for exploratory use. Prudential applications require further validation. The full evidence pack,<br class="desktop-break">
+      ledger and live model included, is shared on request. <span class="phase-badge">Phase 1B</span></p>
+    <div class="investor-divider" aria-hidden="true"></div>
+    <p class="investor-bio">Built by <strong>Jay Gutierrez, PhD</strong>, working at the intersection of ecological network science, graph<br class="desktop-break">
+      intelligence, and nature-finance translation, and building the open engine behind Fluvion.</p>
+  </footer>
+</section>
+
+<footer class="claimbar">
+  <span class="tag">PUBLIC REFERENCE</span>
+  <span class="txt">Demonstration scope includes asset evidence, research-stage atmospheric attribution, and descriptive condition signals. Ownership, mortality, causal loss, forecasting, insurance, and valuation require additional evidence.</span>
+  <span class="snap">Snapshot <span id="snapshot-id">a748ffb4</span></span>
+</footer>
+
+<script src="js/nordic_forest_stage.js?v=20260714g"></script>
+<script src="js/nordic_forest_widgets.js?v=20260714g"></script>
+<script src="js/nordic_forest_atmosphere.js?v=20260714g"></script>
+</body>
+</html>

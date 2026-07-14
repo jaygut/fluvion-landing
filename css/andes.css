@@ -1,0 +1,184 @@
+/* andes.css - layout + widget styling for the Andean water-tower corridor landing.
+   Tokens come from brand.css (:root); this file is layout + components only, all colours via var().
+   House style mirrors viz/soy-belt.html (deep-navy ground, teal-green accent, coral honesty). */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--teal-bright);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- fixed stage stack (z-order) ------------------------------------------------------------ */
+#deckwrap,#atmo,.vignette{position:fixed;inset:0}
+#deckwrap{z-index:0;background:radial-gradient(120% 120% at 60% 30%,var(--bg-2),var(--bg) 70%)}
+#deckwrap svg{width:100%;height:100%;display:block}
+#deckwrap svg .transport-flow{animation:ivt-drift 8s linear infinite}
+#deckwrap svg .transport-flow:nth-child(2n){animation-duration:10.5s}
+@keyframes ivt-drift{to{stroke-dashoffset:-3.2}}
+#atmo{z-index:1;pointer-events:none}
+.vignette{z-index:2;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 42%,transparent 45%,rgba(3,10,16,.72) 100%)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:110;
+  background:linear-gradient(90deg,var(--teal),var(--green))}
+
+/* ---- header lockup -------------------------------------------------------------------------- */
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:100;
+  display:flex;align-items:center;justify-content:space-between;padding:0 22px;
+  background:linear-gradient(180deg,rgba(6,17,26,.92),rgba(6,17,26,.4));
+  border-bottom:1px solid var(--hairline);backdrop-filter:blur(8px)}
+.lockup{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text)}
+.lockup:hover{text-decoration:none}
+.lockup .glyph{width:22px;height:22px}
+.lockup__product{font-weight:700}
+.lockup__sep{color:var(--faint)}
+.lockup .gol{color:var(--muted);font-weight:400;font-size:13px}
+.v2tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal-bright);background:rgba(26,168,155,.12);border:1px solid rgba(26,168,155,.3);
+  border-radius:999px;padding:2px 8px;margin-left:8px}
+.nav-cta{font-family:var(--sans);font-weight:600;font-size:13px;color:#052017;background:var(--green);
+  border-radius:8px;padding:8px 15px}
+.nav-cta:hover{background:var(--teal-bright);text-decoration:none}
+
+/* ---- scroll story: fixed stage, cards float and fade up ------------------------------------- */
+.story{position:relative;z-index:10}
+.step{min-height:100vh;display:flex;align-items:center;padding:0 7vw}
+.step.right{justify-content:flex-end}
+.step.center{justify-content:center;text-align:center}
+.card{max-width:468px;background:linear-gradient(180deg,rgba(11,32,48,.86),rgba(8,22,34,.78));
+  border:1px solid var(--hairline);border-left:2px solid var(--teal);border-radius:12px;
+  padding:24px 26px;backdrop-filter:blur(10px);box-shadow:0 18px 50px rgba(2,8,14,.5);
+  opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.step.center .card{max-width:680px;border-left:none;border-top:2px solid var(--teal)}
+.step.active .card{opacity:1;transform:none}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--teal-bright);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.step.center .eyebrow{justify-content:center}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 8px var(--teal)}
+.hero-title{font-family:var(--display);font-weight:700;font-size:clamp(2.5rem,6.6vw,4.6rem);
+  line-height:1.02;letter-spacing:-.02em;margin:0 0 18px}
+.hero-title .a{color:var(--green)}
+.head{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.5rem);
+  line-height:1.09;letter-spacing:-.01em;margin:0 0 14px}
+.body{font-size:clamp(1rem,1.35vw,1.14rem);line-height:1.62;color:#cdd9dd;margin:0 0 8px}
+.body .hl{color:var(--teal-bright);font-weight:600;font-variant-numeric:tabular-nums}
+.body .red{color:var(--coral);font-weight:600}
+.body .green{color:var(--green);font-weight:600}
+.body strong{color:var(--text)}
+.proof{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:14px;letter-spacing:.02em}
+
+/* ---- coral honesty callout + chips ---------------------------------------------------------- */
+.callout{margin-top:16px;padding:12px 14px;border-radius:9px;background:rgba(232,105,77,.09);
+  border:1px solid rgba(232,105,77,.32);border-left:3px solid var(--coral);
+  font-size:12.5px;line-height:1.5;color:#d7c9bf}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;
+  color:var(--muted);background:rgba(11,32,48,.6);border:1px solid var(--hairline);
+  border-radius:999px;padding:4px 10px;margin:4px 6px 0 0}
+.chip b{color:var(--text);font-weight:600}
+.anchorchip{margin-top:16px;display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+  font-size:12px;font-weight:600;color:#8ff0e4;background:rgba(26,168,155,.1);
+  border:1px solid rgba(43,212,196,.4);border-radius:999px;padding:7px 14px}
+.anchorchip b{color:var(--teal-bright)}
+
+/* ---- six-wedge source-class bar (per corridor) ---------------------------------------------- */
+.wedgewrap{margin-top:18px}
+.wedgewrap .wtitle{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+.wedgewrap .wtitle .wsite{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text);
+  letter-spacing:.04em;text-transform:uppercase}
+.wedgewrap .wtitle .wframe{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.wedgebar svg{width:100%;display:block}
+.wedgeread{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;min-height:1.2em}
+.wedgeread b{color:var(--text)}
+.wedgeread .g{color:var(--green)}
+.wedgeleg{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:8px}
+.wedgeleg button{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:none;
+  border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:2px 0}
+.wedgeleg button:hover,.wedgeleg button.on{color:var(--text)}
+.wedgeleg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+
+/* ---- season toggle (annual vs AMSSRAB DJF/MAM/JJA/SON) --------------------------------------- */
+.seasontoggle{margin-top:16px}
+.seasontoggle .stitle{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+.seasonbtns{display:flex;flex-wrap:wrap;gap:6px}
+.seasonbtns button{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--muted);
+  background:rgba(11,32,48,.6);border:1px solid var(--hairline);border-radius:6px;
+  padding:6px 11px;cursor:pointer;font-variant-numeric:tabular-nums}
+.seasonbtns button.on{background:var(--green);color:#052017;border-color:var(--green)}
+.seasonread{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.seasonread .g{color:var(--green);font-weight:600}
+.seasonread .c{color:var(--coral);font-weight:600}
+.seasonread b{color:var(--text)}
+.seasonbars{margin-top:10px}
+.seasonbars svg{width:100%;display:block}
+
+/* ---- corridor summary cards (scene 7 factory) ----------------------------------------------- */
+.corridorgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.corridorcard{background:rgba(11,32,48,.55);border:1px solid var(--hairline);border-radius:10px;padding:14px 15px}
+.corridorcard.soy{border-left:2px solid var(--amber)}
+.corridorcard.andes{border-left:2px solid var(--teal)}
+.corridorcard .cc-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.corridorcard .cc-name{font-weight:700;font-size:15px;margin:3px 0 6px}
+.corridorcard .cc-val{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.5}
+.corridorcard .cc-val b{color:var(--green);font-variant-numeric:tabular-nums}
+
+/* ---- gate ladder strip (scene 6) ------------------------------------------------------------ */
+.gates{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.gaterow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px}
+.gaterow .gdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.gaterow.pass .gdot{background:var(--green);box-shadow:0 0 7px var(--green)}
+.gaterow.caveat .gdot{background:var(--amber);box-shadow:0 0 7px var(--amber)}
+.gaterow.closed .gdot{background:var(--coral)}
+.gaterow .gk{color:var(--text);min-width:120px}
+.gaterow .gv{color:var(--muted)}
+
+/* ---- CTA ------------------------------------------------------------------------------------ */
+.cta{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:15px;
+  color:#052017;background:var(--green);border-radius:9px;padding:13px 26px;margin-top:8px}
+.cta:hover{background:var(--teal-bright);text-decoration:none}
+.ghost{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--text);
+  border:1px solid var(--hairline);border-radius:9px;padding:12px 20px;margin-left:8px}
+.ghost:hover{border-color:var(--teal);text-decoration:none}
+
+/* ---- overlays: legend (measured) + illus (illustrative) ------------------------------------- */
+.legend,.illus{position:fixed;z-index:20;font-family:var(--mono);font-size:11px;
+  background:rgba(6,17,26,.86);border:1px solid var(--hairline);border-radius:9px;
+  padding:9px 12px;backdrop-filter:blur(6px);opacity:0;transition:opacity .4s var(--ease);
+  max-width:300px;pointer-events:none}
+.legend{right:16px;bottom:calc(var(--claim-h) + 14px)}
+.illus{left:16px;bottom:calc(var(--claim-h) + 14px);color:var(--muted);max-width:min(340px,44vw)}
+.illus.rightside{left:auto;right:16px}
+.legend.show,.illus.show{opacity:1}
+.legend .lrow{display:flex;align-items:center;gap:7px;margin:3px 0;color:var(--muted)}
+.legend .lsw{width:11px;height:11px;border-radius:2px}
+.illus b{color:var(--faint)}
+
+/* ---- persistent claim strip ----------------------------------------------------------------- */
+.claimbar{position:fixed;left:0;right:0;bottom:0;height:var(--claim-h);z-index:90;
+  display:flex;align-items:center;gap:12px;padding:0 16px;font-family:var(--mono);font-size:11px;
+  color:var(--muted);background:rgba(6,17,26,.95);border-top:1px solid var(--hairline);backdrop-filter:blur(6px)}
+.claimbar .tag{color:var(--green);border:1px solid rgba(58,214,163,.4);border-radius:5px;
+  padding:2px 8px;font-weight:600;letter-spacing:.08em;flex:0 0 auto}
+.claimbar .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.claimbar .snap{margin-left:auto;color:var(--faint);flex:0 0 auto}
+
+.scroll-hint{position:fixed;left:50%;bottom:calc(var(--claim-h) + 14px);transform:translateX(-50%);
+  z-index:20;font-family:var(--mono);font-size:11px;color:var(--muted);opacity:.85;animation:bob 1.8s infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+
+/* ---- responsive ----------------------------------------------------------------------------- */
+@media (max-width:760px){.lockup .gol{display:none}}
+@media (max-width:640px){
+  .step{padding:0 5vw}.card{padding:20px 18px}
+  .corridorgrid{grid-template-columns:1fr}
+  .claimbar{height:auto;min-height:var(--claim-h);align-items:center;padding-top:7px;padding-bottom:7px}
+  .claimbar .snap{display:none}.claimbar .txt{white-space:normal;font-size:10px;line-height:1.3}
+  .site-header{padding:0 14px}
+  .site-header nav{display:none}
+  .legend,.illus{display:none}
+  .scroll-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.scroll-hint,#deckwrap svg .transport-flow{animation:none}.card{transition:none}
+}
