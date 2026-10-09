@@ -152,7 +152,7 @@
       b.addEventListener("click", function () { render(s); });
       btns.appendChild(b);
     });
-    render("JJA");   // open on the load-bearing dry-season beat
+    render("Annual");   // (2026-10-09) open on the annual mix; JJA alone made Bogota look Amazon-led
     return { states: STATES, quito_jja: Q.seasonal_amssrab.JJA.amazon_mean, bogota_jja: B.seasonal_amssrab.JJA.amazon_mean };
   }
 
@@ -177,7 +177,7 @@
     host.innerHTML =
       '<div class="corridorcard soy"><div class="cc-k">Corridor 1 &middot; checked</div>' +
       '<div class="cc-name">Amazon to soy</div><div class="cc-val">La Plata crop corridor &middot; ' +
-      'moisture weight <b>w = ' + A.reuse_w.toFixed(4) + '</b> &middot; concurrent sign/rank validation</div></div>' +
+      'moisture weight <b>w = ' + A.reuse_w.toFixed(4) + '</b> &middot; physical screen passes; harvest link below its bar</div></div>' +
       '<div class="corridorcard andes"><div class="cc-k">Corridor 2 &middot; ' + Q.gate1_status.replace(/_/g, " ").toLowerCase() + '</div>' +
       '<div class="cc-name">Amazon to Andean water towers</div><div class="cc-val">' +
       Q.short + ' Amazon <b>' + pct1(Q.amazon_annual) + '</b> (JJA ' + pct1(Q.seasonal_amssrab.JJA.amazon_mean) + ') &middot; ' +

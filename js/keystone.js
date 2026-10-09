@@ -66,7 +66,7 @@
 
     // w-anchor chip
     d3.select(host).append("div").attr("class", "ks-wchip").html(
-      '<b>Reduces to w = ' + w.toFixed(4) + '</b> &middot; the same weight the engine is validated on, '
+      '<b>Reduces to w = ' + w.toFixed(4) + '</b> &middot; the corridor\'s committed annual weight, '
       + 'recovered from the full field as a same-tensor consistency check, not an independent validation.');
   }
 

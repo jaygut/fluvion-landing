@@ -29,11 +29,11 @@
     },
     drought: {
       kicker: "Where dry years bite",
-      body: "Standardized drought pressure marks cells with worse historical moisture stress, without changing the corridor price.",
+      body: "Standardized drought pressure marks cells with worse historical moisture stress, without changing the corridor numbers.",
     },
     heatsoil: {
       kicker: "Where heat meets thin buffers",
-      body: "Heatwave pressure and soil constraints are folded into one physical-stress view for triage, not pricing.",
+      body: "Heatwave pressure and soil constraints are folded into one physical-stress view for triage only.",
     },
     overlap: {
       kicker: "Where to look first",
@@ -56,7 +56,7 @@
           <div class="soyctx-title">Context layer</div>
           <div class="soyctx-sub">${c.kicker}</div>
         </div>
-        <div class="soyctx-verdict">not priced</div>
+        <div class="soyctx-verdict">context only</div>
       </div>
       <div class="soyctx-modes" role="group" aria-label="Soy context map mode">
         ${modes.map((x) => `<button type="button" class="soyctx-btn${x.id === state.mode ? " on" : ""}" data-mode="${x.id}">${x.label}</button>`).join("")}

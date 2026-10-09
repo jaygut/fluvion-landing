@@ -18,8 +18,7 @@
 
   // ---- stat fills (same data-bound headline numbers as v1) ----
   const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  set("s-perha", "$" + Math.round(D.parcel_values.perha.central));
-  set("s-var", "$" + (D.monte_carlo.var95 / 1e6).toFixed(2) + "M");
+  // (2026-10-09) the per-hectare and VaR stat fills were removed with the claim-suppressed money layer.
 
   // ---- colour helpers ----
   const div = d3.scaleDiverging([-50, 0, 50], d3.interpolateRdYlGn);
@@ -253,7 +252,7 @@
     }
     const sp = P(ML.source.lon, ML.source.lat);
     svg.append("circle").attr("cx", sp[0]).attr("cy", sp[1]).attr("r", 9).attr("fill", "#00d4aa").attr("stroke", "#cffaf0").attr("stroke-width", 1.6);
-    svg.append("text").attr("x", sp[0] + 12).attr("y", sp[1] + 4).attr("fill", "#8fe9d6").attr("font-size", 13).attr("font-weight", 600).text("Amazonas source");
+    svg.append("text").attr("x", sp[0] + 12).attr("y", sp[1] + 4).attr("fill", "#8fe9d6").attr("font-size", 13).attr("font-weight", 600).text("Source box");
     svg.append("text").attr("x", 18).attr("y", H - 16).attr("fill", "#5a6b86").attr("font-size", 11)
       .text("Static map (3D unavailable here); same data. The moisture layer still breathes above it.");
   }
@@ -315,8 +314,9 @@
   const legend = document.getElementById("legend");
   const illus = document.getElementById("illus");
   const ILLUS = {
-    "2": "Tracers are released from the source box and ride the fixed flying-river edges to the soy belt. Counts and speeds are illustrative; parcel polygons are private.",
-    "3": "Stylized rendering: particles follow the share-weighted moisture edges, consistent with the precipitationshed. Not a wind measurement.",
+    "0": "Arcs join the source box to the soy states inside the sink box. Arc width is each state's share of soy production, not a moisture flow.",
+    "2": "Tracers are released from the source box and ride stylized edges toward the soy belt. Counts and speeds are illustrative.",
+    "3": "Stylized rendering: the isolines are the computed precipitationshed; arc width is each state's share of soy production, not a moisture flow. Not a wind measurement.",
     "g-graph": "The directed weighted RECON network is real (Zenodo 14191920, 2008-2017, 0.5 degree); the field blooming under the corridor is the computed dependency, not the full 108 million edges. Cells are a basin-scale proxy, not parcels.",
     "s-context": "Cell-level context from open harmonized Earth-system layers. Visual scores only: no per-cell VaR, no price update, and not a forecast.",
     "6": "The grade changes reliability, not the average. Same mean rain, fatter drought tail. Illustrative of the mechanism.",
